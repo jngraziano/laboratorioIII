@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formularios</title>
+</head>
+<body>
+    <form id="miform" action="" method="">
+        <label for="nombre">    
+            Label: Es para ordenar y se basa en el name
+        </label>
+        <br><br>
+        
+        <fieldset>
+                <legend><h1> Datos Personales (Input type text)</h1></legend>
+                <input type="text" name="nombre" placeholder="Ingrese nombre." id="nombre" required>
+                <br>
+                <input type="text" name="apellido" placeholder="Ingrese apellido." id="apellido" required>
+                <br>
+                <label for="genero">
+                <h4>Clickee Genero:</h4>
+                <input type="radio" name="genero" value="Femenino"checked>Femenino
+                <!--checked es para que ya pinte el primero por default-->
+                <br>
+                <input type="radio" name="genero" value="Masculino" >Masculino
+
+                <!--el label funnciona con el nombre que coincida no hace falta que este adentro-->
+                </label>
+                <br><br>
+                <label for="seleccionlibreta">
+                    <b>Seleccione:</b>
+                </label>
+                <select name="seleccionlibreta" id="seleccionlibreta">
+                    <!--select lo usamos para que genere un display para que seleccione el usuario-->
+                    <optgroup label="Tipo de Documento">
+                        <!--optgroup pone un titulo en negrita no seleccionable 
+                        para agrupar los option-->
+                    <option value="value1">
+                        <!--option le da las opciones para elegir-->
+                        DNI
+                    </option>
+
+                    <option value="value2">
+                        Libreta Civica
+                    </option>
+                    </optgroup>
+                    
+                </select>
+                <br>
+            
+                    
+
+            </fieldset>       
+            <!--fieldset sirve para darle el marco
+            legend para darle el "nombre a lo que sigue"
+            y ahi dentro ponemos el input
+            -->
+        <br><br>
+        <input type="button" name="boton" value="Botonazo">
+
+    </form>
+    
+</body>
+</html>
