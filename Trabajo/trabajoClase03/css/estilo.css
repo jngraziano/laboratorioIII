@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+    /*Lo que estoy diciendo es que el borde es el borde de la caja*/
+}
+
+nav{
+    background-color:darkred;
+    color: white;
+    height: 30px;
+}
+
+ul li{
+        display: inline-block;
+        background-color: darkred;
+}
+a:link , a:visited{
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      align-self: center;
+      padding:  14px 25px;
+}
+ul li a:hover{
+      background-color:white;
+      color: darkred;
+      
+
+     
+    
+}
