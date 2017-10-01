@@ -51,7 +51,7 @@ function traerLista()
             "<td>"+ element.nombre + "</td>" + "<td>" + element.apellido + "</td>" + 
             //ARMAR BOTON BUTTON APUNTANDO CON ONCLICK A UNA FUNCION Y DE LA FUNCION A EL SERVER
             //EN EL DE MODIFICAR, CAMBIAR EL FUNCIONAMIENTO DEL BOTON CON SETATRIBUTTE, LLAMAR PRIMERO A TRAER PERSONA, CARGARLO EN EL HTML Y MODIFICAR
-            "<td>"+ element.nombre + "</td>" + "<td>" + element.apellido + "</td>" + 
+            // "<td>"+ element.nombre + "</td>" + "<td>" + element.apellido + "</td>" + 
             "</tr>"
         }, this);
     }

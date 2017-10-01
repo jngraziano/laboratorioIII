@@ -11,10 +11,11 @@ table{
 }
 
 #tablaUsuarios{ 
-    background-color: green;
+    background-color:darkred;
     text-align: center;
     border-width: 5px;
     border-color: black;
+    color: white;
    
 }
 
