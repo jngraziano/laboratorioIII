@@ -57,7 +57,7 @@ function limpiarenviar() {
     var tcuerpo = document.getElementById("ingreso")
     document.getElementById('ingreso').innerHTML="";
     tcuerpo.innerHTML = 
-         "<h1>Nombre:</h1> <input type='text' value='' name='nombre' id='nombrestr'></input>"+
+         "Nombre: <input type='text' value='' name='nombre' id='nombrestr'></input>"+
          "Apellido: <input type='text' value='' name='apellido' id='apellidostr'>"+
 
         "<input type='button' value='Enviar' id='btnEnviar' onclick='enviar()'></input>"
