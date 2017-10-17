@@ -1,0 +1,60 @@
+------------------BOOSTRAP----------------------------------------------
+Son las clases ya predefinidas para usar en html para modificar visualmente 
+llamandola con un . y el nombre te crea un div especifico.
+------------------------------------------------------------------------
+
+shift+alt+f: ACOMODA EL TEXTO EN VC.
+Para escribir en varios lados a la vez:
+Click con el cursor y dsp con alt
+
+------------------------------------------------------------------------
+En EJ1GRILLA:
+col-md-offset-3
+Sirve para ubicar usando 3 4 n
+
+div class row (se hace con .row)
+------------------------------------------------------------------------
+En EJ2Tipografia:
+<h1 class="text-muted">
+ <h2 class="text-primary">
+  <h3 class="text-success">
+  etc
+Cambia los colores.....
+<small>: sirve para poner texto secundario.No le afecta el color y es como una descripcion del titulo.
+Se puede usar como clase o como etiqueta.Achica la letra si lo uso como clase.
+clases:
+lead: sirve para resaltar.
+text-lowercase: sirve para minimizar las letras
+text-uppercase: sirve para maximizar las letras
+text-capitalize: pone mayuscula en la primera letra de cada palabra
+text-justify: justifica el texto.
+text-center: centra el texto.
+text-right: derecha.
+
+blockquote: sive para hacer citas. Le pone un marquito para mostrar que es una cita.
+blockquote-reverse: esta clase muestra todo a la derecha.
+Poniendo un footer dentro de esto podemos poner quien dijo la frase por ejemplo.
+
+bg (de background)-loquesea: le da un color de fondo segun las normas
+boostrap no tiene mas que estos colores, si queremos alguno en especial tenemos que usar class
+para lo que querramos hacer hay muchas clases de boostrap para usar.
+------------------------------------------------------------------------
+En EJ3Tablas:
+ponemos .container y nos crea un div container para agrupar. Boostrap no agrega estilos por default
+clase table: te crea la tabla en la etiqueta table
+table-striped: pinta para que se vea mejor 1 si 1 no.
+table-hover: señala lo que apoyes con el mouse
+table-condensed: achica para que entre
+table-bordered: pone marco
+<div class="table-responsive">: agrega la barrita para poder ver a pesar que achique la ventana
+<tr class="danger">: lo mismo que lo anterior le agrega el color
+------------------------------------------------------------------------
+En EJ5Botones:
+la clase es btn.
+btn-warning, etc: es lo mismo que las otras. le da el color.
+btn-lg: grande para el boton
+btn-sm: small
+btn-xs: ultra small
+btn-block: ocupa el ancho de la columna/contenedor
+active: queda como si estuviera presionado
+disabled: queda desabilitado.....
