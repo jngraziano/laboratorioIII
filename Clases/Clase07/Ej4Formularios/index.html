@@ -28,30 +28,43 @@
          search
          tel
          color -->
+         
+<div class="container">
 
+        
     <form action="#">
-        <label for="nombre">Nombre:</label>
-        <input type="text" class="" id="nombre" placeholder="Nombre">
+       <div class="form-group">
 
+       
+        <label for="nombre">Nombre:</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+    </div>
+
+    <div class="form-group">
         <label for="opcion">Elige una opción:</label>
-        <select class="" name="" id="opcion">
+        <select class="form-control" name="" id="opcion">
             <option value="">Opción #1</option>
             <option value="">Opción #2</option>
             <option value="">Opción #3</option>
             <option value="">Opción #4</option>
             <option value="">Opción #5</option>
         </select>
-
+    </div>
+    <div class="form-group">
         <label for="mensaje">Mensaje:</label>
-        <textarea class="" name="" id="mensaje" placeholder="Escribe tu mensaje:"></textarea>
+        <textarea class="form-control" name="" id="mensaje" placeholder="Escribe tu mensaje:"></textarea>
+    </div>
 
+    <div class="form-group">
         <label for="archivo">Archivo:</label>
         <input type="file" id="archivo">
-        <p class="">Máximo 50MB</p>
+        <p class="help-block">Máximo 50MB</p>
+    </div>
 
-        <button class="">Enviar</button>
-
+        <button class="btn btn-primary ">Enviar</button>
+   
     </form>
+</div>
 </body>
 
 </html>
