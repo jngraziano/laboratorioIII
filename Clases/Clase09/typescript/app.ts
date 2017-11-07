@@ -1,0 +1,6 @@
+enum mascotas{
+    salvaje,
+    domestica
+}
+
+

@@ -19,7 +19,7 @@ console.log(soluciones.usuariosFemeninos(data));
 
 soluciones.usuariosmayores = function (usuarios,edad){
     return usuarios
-    .filter(function(user)){
+    .filter(function(user){
         return user.edad > edad;
     })
     .map(function(user){
