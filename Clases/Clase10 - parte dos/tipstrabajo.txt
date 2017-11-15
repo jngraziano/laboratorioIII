@@ -25,3 +25,4 @@ app ->
 animal -> namespace Clases
           public toJSON():string
 
+en index sobrecarga el onlick agregarMascota
