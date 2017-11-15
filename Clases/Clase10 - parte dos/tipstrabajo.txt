@@ -1,0 +1,27 @@
+en una carpeta js tengo
+(recordar que tengo que poner para llamar a cosas fuera un export class Mascota extends Animal)
+mascota ->export class Mascota extends Animal
+enumerado-> namespace Clases{export enum tipoMascota{los tipos}
+app ->
+        $(function()){
+            localStorage.clear();
+        }
+        function agregarMascota(): void
+        let nuevaMascota = new Clases.Mascota(Number($('#textid').val(), string('#txtNombre').val(), etc)))
+
+        let MascotasString= string | null = localStorage.getItem("Mascotas");
+
+        let MascotasJSON: JSON[] = MascotasString == null ? [] : JSON.pase(MascotasString);
+        
+        MascotasJSON.push(JSON.parse(nuevaMascota.toJSON()));
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
+
+        alert("Mascota guardada");
+
+        mostrarMascotas(); //lo que hace es refrescar la tabla, el MascotaJSON lo castea a un array de Mascotas
+
+        limpiarCampos();//usa la funcion val y focus
+
+animal -> namespace Clases
+          public toJSON():string
+
