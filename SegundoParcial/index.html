@@ -1,14 +1,153 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="app.js"></script>
-    <title>Document</title>
+        <!DOCTYPE html>
+        <html lang="es">
+        
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          <!--<link rel="stylesheet" href="css/estilos.css">-->
+          <script src="js/jquery-3.2.1.js"></script>
+          <!-- <script src="js/script.js"></script> -->
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <script src="TS/app.js"></script>
+          <title>Laboratorio III</title>
+        </head>
+        
+        <!-- HEADER NAV -->
+        <div class="container">
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span> 
+                </button>
+                <a class="navbar-brand" href="#">Laboratorio III - Julian Graziano</a>
+              </div>
+              <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                  <!-- <li class="active"><a href="#">Home</a></li>
+                  <li><a href="#">Descripcion</a></li>
+                  <li><a href="#inscripcion">Inscripcion</a></li>
+                  <li><a href="#listado">Listado</a></li> -->
+                </ul>
+        
+              </div>
+            </div>
+          </nav>
+        
+          <body style="padding-top:65px">
+           
+         <!-- LOGIN -->
+            <!-- <section id="inscripcion" style="background-color:red;padding-top:65px;padding-bottom:45px;"> -->
+        
+              <div class="row">
+                    <div class="form-group">
+                            <!-- ID -->
+                            <label for="id">ID</label>
+                            <input type="text" id="ID" class="sinError form-control" name="id" placeholder="Ingrese su ID" autocomplete="off">
+                            <br>
+                      </div>
+                      <div class="form-group">
+                        <!-- NOMBRE -->
+                        <label for="nombre">Nombre</label>
+                        <br>
+                        <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Ingrese su Nombre" autocomplete="off" autofocus>
+                        <br>
+                     </div> 
+                     <div class="form-group">
+                            <!-- EDAD -->
+                            <label for="edad">Edad</label>
+                            <br>
+                            <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Ingrese su Edad" autocomplete="off" autofocus>
+                            <br>
+                         </div>  
+                   
+                        <!-- TIPO -->
+                        <div class="form-group">
+                                <label for="opcion">Elige un Tipo:</label>
+                                <select class="form-control" name="tipo" id="tipo">
+                                    <option value="">Sacar del enum</option>
+                                    <option value="">Opción #2</option>
+                                    <option value="">Opción #3</option>
+                                    <option value="">Opción #4</option>
+                                    <option value="">Opción #5</option>
+                                </select>
+                            </div>  
+                        <!-- CANTIDAD DEPATAS  -->
+                        <div class="form-group">
+                                <label for="opcion">Cantidad de patas</label>
+                                <select class="form-control" name="cantidadpatas" id="cantidadpatas">
+                                    <option value="">Sacar del enum</option>
+                                    <option value="">Opción #2</option>
+                                    <option value="">Opción #3</option>
+                                    <option value="">Opción #4</option>
+                                    <option value="">Opción #5</option>
+                                </select>
+                            </div>  
+                                          
+                </div>
+              <div class="container rown">
+                <!-- BOTON AGREGAR -->
+               <div class="col-md-offset-4">
+                  <button class='btn btn-success btn-lg' type="button" id="btnEnviar" value="Agregar" onclick="agregar();">
+                      Agregar
+                      <i class="glyphicon glyphicon-plus"></i>
+                  </button>
+                
+                <!-- BOTON MODIFICAR -->
+                
+                        
+                      <button class='btn btn-warning btn-lg' type="button" id="btnModificar" value="Modificar" onclick="modificar();">
+                          Modificar
+                          <i class="glyphicon glyphicon-pencil"></i>
+                      </button>
+                 
+                     <!-- BOTON ELIMINAR -->
+                
+                           
+                    <button class='btn btn-danger btn-lg' type="button" id="btnEliminar" value="Eliminar" onclick="eliminar();">
+                        Eliminar
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                </div>
+                
+        
+              </div>
+        
+            </section>
+            
+            <!-- SPINNER QUE GIRA CUANDO CARGA -->
+        
+            <div id="spinner">
+        
+            </div>
+        
+            <!-- LISTADO -->
+            <section id="listado" class="container" style="padding-top: 45px;">
+              <h2>Listado de animales inscriptos</h2>
+              <div class="table-responsive">
+                <table class="table table-hover" id="tabla">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>NOMBRE</th>
+                      <th>EDAD</th>
+                      <th>TIPO</th>
+                      <th>CANTIDAD DE PATAS</th>
+                      <th>Accion</th>
+                    </tr>
+                  </thead>
+                </table>
+                
+              </div>
+            </section>
+        
+        </div>
+                
     
-</head>
-<body>
-    
-</body>
-</html>
+        </body>
+        
+        </html>
