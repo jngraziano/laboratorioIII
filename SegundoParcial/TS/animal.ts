@@ -1,5 +1,5 @@
 
-namespace Clases {
+ namespace Clases {
     
 
         export abstract class Animal {
@@ -23,11 +23,14 @@ namespace Clases {
             }
             
 
-            public toJson(Nombre():string):string{
-                return 
+            public toJson():string{
+                return  this._nombre;
+                
             }
 
-
+            // public tojson 
+            // json:string (nombre (this.nombre9)):
+            //     return json
             
         }
 }

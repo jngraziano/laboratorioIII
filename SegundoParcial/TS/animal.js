@@ -14,9 +14,8 @@ var Clases;
             enumerable: true,
             configurable: true
         });
-        Animal.prototype.toJson = function (Nombre) {
-            if (Nombre === void 0) { Nombre = function () { return ; }; }
-            return;
+        Animal.prototype.toJson = function () {
+            return this._nombre;
         };
         return Animal;
     }());

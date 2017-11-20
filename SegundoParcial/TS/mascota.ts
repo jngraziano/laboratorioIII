@@ -1,9 +1,9 @@
 
 
-namespace Clases{
+ namespace Clases{
 
 
-        export class Mascota extends Animal {
+            export  class Mascota extends Animal {
             private _id:number;
             public _tipo:tipoMascota;
 
@@ -16,8 +16,9 @@ namespace Clases{
                 
             }
 
-            // mostrar():string{
-            //     return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
-            // }
+            public toJson():string{
+                return  JSON.stringify(super.toJson());
+                
+            }
         }
 }

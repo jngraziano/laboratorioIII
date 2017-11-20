@@ -19,6 +19,9 @@ var Clases;
             _this._tipo = tipo;
             return _this;
         }
+        Mascota.prototype.toJson = function () {
+            return JSON.stringify(_super.prototype.toJson.call(this));
+        };
         return Mascota;
     }(Clases.Animal));
     Clases.Mascota = Mascota;

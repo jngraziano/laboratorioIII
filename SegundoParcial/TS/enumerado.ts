@@ -1,4 +1,4 @@
-namespace Clases{
+ namespace Clases{
     export enum tipoMascota{
         "PERRO",
         "GATO",
@@ -11,4 +11,4 @@ namespace Clases{
     
     }
 
-  }
+   }

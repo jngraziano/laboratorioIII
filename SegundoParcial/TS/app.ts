@@ -1,25 +1,70 @@
-namespace aplicaciones{
+//  namespace Clases{
+   
+$(function()){
+        localStorage.clear();
+}
+
+    function agregarMascota() {
+    
+    // Asginado en variables
+        let id: number = Number ($('#ID').val());
+        let nombre: string = String ($('#nombre').val());
+        let edad: number = Number ($('#edad').val());
+        let tipo: Clases.tipoMascota = Number ($('#tipo').val());
+        let cantPatas: number = Number ($('#cantidadpatas').val());
+       
+       
+    //ASIGNO USANDO document.getElementById
+
+        // let id:number = Number (document.getElementById("ID").value);
+        // let nombre:string = String (document.getElementById("nombre").value);
+        // // let tipo: Clases.tipoMascota = Number ($(selecTipo).val());
+        // let tipo: string = String (document.getElementById("tipo").value);
+        // let edad: number = Number (document.getElementById("edad").value);
+        // let cantPatas: number = Number (document.getElementById("cantidadpatas").value);
+        
+    //Creo directamente el objeto mascota
+        let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
+                                              Number ($('#edad').val()),
+                                              Number ($('#cantidadpatas').val()),
+                                              Number ($('#ID').val()), 
+                                              Number ($('#tipo').val()));
+
+         //let nuevaMascota = new Clases.Mascota(nombre,edad,cantPatas,id,tipo);
 
 
-    function agregarMascota(txtid:number,) {
+        // alert (nuevaMascota);
+       // console.log(nuevaMascota);
+        
+
         
   
-    let id: number = Number ($#txtid).val();
-    let tipo: Clases.tipoMascota = Number ($(selecTipo).val());
-    let nuevaMascota = new Clases.Mascota(Number($('#txtId').val()),string($(),tipo))
+        let MascotasString:string|null = localStorage.getItem("Mascotas");
+        //la primera vez no hay nada, las otras veces string
+        console.log(nuevaMascota);
+        
+            let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+            console.log(nuevaMascota.toJson()); //ver como anda
 
-    let MascotasString:string|null = localStorage.getItem("Mascotas");
-    //la primera vez no hay nada, las otras veces string
+            MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
-        let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
-        console.log(nuevaMascota.toJson()); //ver como anda
+             localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
 
-        MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
+             alert ("Mascota guardada");
+   
+     }
+    // let MascotasString:string|null = localStorage.getItem("Mascotas");
+    // //la primera vez no hay nada, las otras veces string
 
-        localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
+    //     let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
+    //     console.log(nuevaMascota.toJson()); //ver como anda
 
-        alert ("Mascota guardada");
-    }
+    //     MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
+
+    //     localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
+
+        // alert ("Mascota guardada");
+
 //         mostrarMascotas();
 //             let MascotasJson : Clases.Mascota[i].id
 //             armo la tabla como el primer parcial con el fastix
@@ -31,4 +76,4 @@ namespace aplicaciones{
 //             y que ponga foco en txtid
 
 // armo el json con un array de mascotas
-}
+
