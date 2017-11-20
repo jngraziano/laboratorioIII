@@ -22,7 +22,12 @@
             }
 
             public toJson():string{
-                return  JSON.stringify(super.toJson());
+                let cad:string = super.toJson().replace(`,`,'');
+                
+                let json:string = cad+this._id+this._tipo;
+
+
+                return  JSON.stringify(json);
                 
             }
         }

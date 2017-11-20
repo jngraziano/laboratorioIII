@@ -43,7 +43,8 @@ $(function()){
         //la primera vez no hay nada, las otras veces string
         console.log(nuevaMascota);
         
-            let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+            // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+            let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
             //console.log(nuevaMascota.toJson()); //ver como anda
 
             MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
@@ -52,6 +53,10 @@ $(function()){
 
              alert ("Mascota guardada");
              console.log(MascotasJson);
+
+
+            let devuelve = localStorage.getItem("Mascotas")
+            console.log(devuelve);
    
      }
     // let MascotasString:string|null = localStorage.getItem("Mascotas");

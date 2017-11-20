@@ -26,12 +26,15 @@ function agregarMascota() {
     var MascotasString = localStorage.getItem("Mascotas");
     //la primera vez no hay nada, las otras veces string
     console.log(nuevaMascota);
-    var MascotasJson = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+    // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+    var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString);
     //console.log(nuevaMascota.toJson()); //ver como anda
     MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
     localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
     alert("Mascota guardada");
     console.log(MascotasJson);
+    var devuelve = localStorage.getItem("Mascotas");
+    console.log(devuelve);
 }
 // let MascotasString:string|null = localStorage.getItem("Mascotas");
 // //la primera vez no hay nada, las otras veces string

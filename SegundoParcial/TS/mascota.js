@@ -24,7 +24,9 @@ var Clases;
             // return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
         };
         Mascota.prototype.toJson = function () {
-            return JSON.stringify(_super.prototype.toJson.call(this));
+            var cad = _super.prototype.toJson.call(this).replace(",", '');
+            var json = cad + this._id + this._tipo;
+            return JSON.stringify(json);
         };
         return Mascota;
     }(Clases.Animal));
