@@ -44,13 +44,14 @@ $(function()){
         console.log(nuevaMascota);
         
             let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
-            console.log(nuevaMascota.toJson()); //ver como anda
+            //console.log(nuevaMascota.toJson()); //ver como anda
 
             MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
              localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
 
              alert ("Mascota guardada");
+             console.log(MascotasJson);
    
      }
     // let MascotasString:string|null = localStorage.getItem("Mascotas");

@@ -16,6 +16,11 @@
                 
             }
 
+            public animalCompleto() : string {
+                return `${super.animalCompleto()},${this._id},${this._tipo}`;
+                // return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
+            }
+
             public toJson():string{
                 return  JSON.stringify(super.toJson());
                 

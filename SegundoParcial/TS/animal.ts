@@ -18,19 +18,22 @@
                 
             }
             
-            public get Nombre() : string {
+            protected get Nombre() : string {
+               
                 return this._nombre;
             }
             
-
+            public animalCompleto():string {
+                
+                return `${this._nombre}, ${this._edad}, ${this._cantPatas}`;
+            }
+           
             public toJson():string{
-                return  this._nombre;
+                return  this.animalCompleto();
                 
             }
 
-            // public tojson 
-            // json:string (nombre (this.nombre9)):
-            //     return json
+           
             
         }
 }

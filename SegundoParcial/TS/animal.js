@@ -14,8 +14,11 @@ var Clases;
             enumerable: true,
             configurable: true
         });
+        Animal.prototype.animalCompleto = function () {
+            return this._nombre + ", " + this._edad + ", " + this._cantPatas;
+        };
         Animal.prototype.toJson = function () {
-            return this._nombre;
+            return this.animalCompleto();
         };
         return Animal;
     }());
