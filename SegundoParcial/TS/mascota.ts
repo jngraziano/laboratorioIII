@@ -8,7 +8,7 @@
             public _tipo:tipoMascota;
 
 
-            constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:tipoMascota) {
+            constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:number) {
                 
                 super(nombre,edad,cantPatas);
                 this._id=id;

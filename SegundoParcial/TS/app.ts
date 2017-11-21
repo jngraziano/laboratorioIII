@@ -1,17 +1,38 @@
 //  namespace Clases{
-   
-$(function()){
-        localStorage.clear();
-}
+    /// <reference path="node_modules/@types/jquery/index.d.ts" />
+    
+    // jQuery:
 
-    function agregarMascota() {
+    //copio la carpeta node modules o uso npm init
+    // npm install --save @types/jquery
+   
+// $(function(){
+//         localStorage.clear();
+        
+// }
+$(function(){
+
+    // ESTO ES LO PRIMERO QUE SE CARGA EN LA PAGINA
+    let select = $("#tipo");
+	
+    for (var i = 0; i < 6; i++) 
+    {
+        select.append("<option value="+i+">"+practicaMascotas.animales[i]+"</option>");
+    }
+});
+
+       // Agrega esto afuera, hace un metodo con esto
+        // .change(mapearCampos);
+
+
+    function agregarMascota(): void {
     
     // Asginado en variables
-        let id: number = Number ($('#ID').val());
-        let nombre: string = String ($('#nombre').val());
-        let edad: number = Number ($('#edad').val());
-        let tipo: Clases.tipoMascota = Number ($('#tipo').val());
-        let cantPatas: number = Number ($('#cantidadpatas').val());
+        // let id: number = Number ($('#ID').val());
+        // let nombre: string = String ($('#nombre').val());
+        // let edad: number = Number ($('#edad').val());
+        // let tipo: Clases.tipoMascota = Number ($('#tipo').val());
+        // let cantPatas: number = Number ($('#cantidadpatas').val());
        
        
     //ASIGNO USANDO document.getElementById
@@ -31,12 +52,6 @@ $(function()){
                                               Number ($('#tipo').val()));
 
          //let nuevaMascota = new Clases.Mascota(nombre,edad,cantPatas,id,tipo);
-
-
-        // alert (nuevaMascota);
-       // console.log(nuevaMascota);
-        
-
         
   
         let MascotasString:string|null = localStorage.getItem("Mascotas");
@@ -50,16 +65,32 @@ $(function()){
             MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
              localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-
+            console.log(MascotasJson);
              alert ("Mascota guardada");
             // console.log(MascotasJson);
-
+            
             // Para ver que devuelve:
             // let devuelve = localStorage.getItem("Mascotas")
             // console.log(devuelve);
+
+
+            // mostrarmascotas();
    
      }
 
+    //  function filtrarMascotas(tipo:number){
+    //      let mascotaslFiltradas:Array<Clases.Mascota>;
+
+    //      let MascotasString: string | null = localStorage.getItem("Mascotas");
+    //      let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF
+    //      (nuevamascota.toJSON());
+
+    //      MascotasJSON.push(JSON.parse(nuevaMascota.toJSON()));
+    //  }
+    //  function filtrar(tipo:any())
+    //  {
+
+    //  }
     //  function mostrarMascotas() {
     //     let MascotasJson : Clases.Mascota[i].id
     //            //     armo la tabla como el primer parcial con el fastix
