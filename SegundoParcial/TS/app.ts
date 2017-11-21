@@ -52,25 +52,22 @@ $(function()){
              localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
 
              alert ("Mascota guardada");
-             console.log(MascotasJson);
+            // console.log(MascotasJson);
 
-
-            let devuelve = localStorage.getItem("Mascotas")
-            console.log(devuelve);
+            // Para ver que devuelve:
+            // let devuelve = localStorage.getItem("Mascotas")
+            // console.log(devuelve);
    
      }
-    // let MascotasString:string|null = localStorage.getItem("Mascotas");
-    // //la primera vez no hay nada, las otras veces string
 
-    //     let MascotasJson : JSON[] = MAscotaString == null ? [] : JSON.parse(MascotaNueva.Json()); // ESTO ES UN IF
-    //     console.log(nuevaMascota.toJson()); //ver como anda
+    //  function mostrarMascotas() {
+    //     let MascotasJson : Clases.Mascota[i].id
+    //            //     armo la tabla como el primer parcial con el fastix
+    //               #divtabla.html(tabla);
 
-    //     MascotassJson.push(Json.parse(nuevaMascota.toJSON()));
-
-    //     localStorage.setItem("Mascotas",JSON.stringify(MascotasJSON));
-
-        // alert ("Mascota guardada");
-
+            
+         
+    // }
 //         mostrarMascotas();
 //             let MascotasJson : Clases.Mascota[i].id
 //             armo la tabla como el primer parcial con el fastix
