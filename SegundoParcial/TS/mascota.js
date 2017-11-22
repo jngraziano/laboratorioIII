@@ -18,6 +18,8 @@ var Clases;
             _this._id = id;
             _this._tipo = tipo;
             return _this;
+            //Inicializar el array?
+            // let arrayanimal:JSON
         }
         Mascota.prototype.animalCompleto = function () {
             return _super.prototype.animalCompleto.call(this) + "," + this._id + "," + this._tipo;

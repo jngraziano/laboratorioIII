@@ -17,7 +17,7 @@ $(function(){
 	
     for (var i = 0; i < 6; i++) 
     {
-        select.append("<option value="+i+">"+practicaMascotas.animales[i]+"</option>");
+        select.append("<option value="+i+">"+Clases.Animal.array[i]+"</option>");
     }
 });
 

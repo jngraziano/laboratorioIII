@@ -6,7 +6,17 @@ var Clases;
             this._nombre = nombre;
             this._edad = edad;
             this._cantPatas = cantPatas;
+            //Inicializar el array?
+            // let arrayanimal:JSON
+            // this.arrayanimales=arraynew[];
         }
+        Object.defineProperty(Animal.prototype, "array", {
+            get: function () {
+                return this.arrayanimales;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(Animal.prototype, "Nombre", {
             get: function () {
                 return this._nombre;

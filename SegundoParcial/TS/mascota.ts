@@ -6,6 +6,7 @@
             export  class Mascota extends Animal {
             private _id:number;
             public _tipo:tipoMascota;
+        
 
 
             constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:number) {
@@ -13,6 +14,8 @@
                 super(nombre,edad,cantPatas);
                 this._id=id;
                 this._tipo=tipo;
+                //Inicializar el array?
+                // let arrayanimal:JSON
                 
             }
 
@@ -30,5 +33,7 @@
                 return  JSON.stringify(json);
                 
             }
+
+
         }
 }
