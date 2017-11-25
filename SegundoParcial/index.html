@@ -92,8 +92,8 @@
                                 <label for="opcion">Cantidad de patas</label>
                                 <select class="form-control" name="cantidadpatas" id="cantidadpatas">
                                     <option value="0">No tiene</option>
-                                    <option value="1">2</option>
-                                    <option value="2">4</option>
+                                    <option value="2">2</option>
+                                    <option value="4">4</option>
                                  
                                 </select>
                             </div>  
@@ -101,7 +101,7 @@
                 </div>
               <div class="container rown">
                 <!-- BOTON AGREGAR -->
-               <div class="col-md-offset-4">
+               <div class="col-md-offset-3">
                   <button class='btn btn-success btn-lg' type="button" id="btnagregarMascota" value="Agregar" onclick="agregarMascota();">
                       Agregar
                       <i class="glyphicon glyphicon-plus"></i>
@@ -118,9 +118,13 @@
                      <!-- BOTON ELIMINAR -->
                 
                            
-                    <button class='btn btn-danger btn-lg' type="button" id="btnEliminar" value="Eliminar" onclick="eliminar();">
+                    <button class='btn btn-primary btn-lg' type="button" id="btnEliminar" value="Eliminar" onclick="eliminar();">
                         Eliminar
                         <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    <button class='btn btn-danger btn-lg disabled' type="button" id="btnLimpiarLista" value="LimpiarLista" onclick="LimpiarLista();">
+                        Limpiar Lista
+                        <i class="glyphicon glyphicon-floppy-remove"></i>
                     </button>
                 </div>
                 
@@ -134,7 +138,30 @@
             <div id="spinner">
         
             </div>
-        
+            <br>
+        <!-- CHECKBOX -->
+        <div class="checkbox">
+          <caption><h2>Filtrar listado por:</h2></caption>
+          <label>
+              <input type="checkbox" name="idfiltro" id="idfiltro">ID
+          </label>
+
+          <label>
+              <input type="checkbox" name="nombrefiltro" id="nombrefiltro">NOMBRE
+          </label>
+
+          <label>
+             <input type="checkbox" name="edadfiltro" id="edadfiltro">EDAD
+          </label>
+
+          <label>
+              <input type="checkbox" name="tipofiltro" id="tipofiltro">TIPO
+          </label>
+          <label>
+            <input type="checkbox" name="cantPatasfiltro" id="cantPatasfiltro">CANT. PATAS
+        </label>
+      </div>
+      
             <!-- LISTADO -->
             <section id="listado" class="container" style="padding-top: 45px;">
               <caption><h2>Listado de animales inscriptos</h2></caption>

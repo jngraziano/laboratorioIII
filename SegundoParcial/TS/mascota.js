@@ -18,8 +18,6 @@ var Clases;
             _this._id = id;
             _this._tipo = tipo;
             return _this;
-            //Inicializar el array?
-            // let arrayanimal:JSON
         }
         Mascota.prototype.animalCompleto = function () {
             return _super.prototype.animalCompleto.call(this) + "," + this._id + "," + this._tipo;
@@ -27,9 +25,9 @@ var Clases;
         };
         Mascota.prototype.toJson = function () {
             //let cad:string = super.toJson().replace(`,`,'');
-            var cad = _super.prototype.toJson.call(this);
-            var json = cad + this._id + this._tipo;
-            return JSON.stringify(json);
+            // let cad:string = super.toJson();
+            // let json:string = cad+this._id+this._tipo;
+            return JSON.stringify(this.animalCompleto());
         };
         return Mascota;
     }(Clases.Animal));

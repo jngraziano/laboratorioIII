@@ -5,12 +5,12 @@
     // npm install --save @types/jquery
 
 // namespace Clases{
-let xhr = new XMLHttpRequest();
+
 $(function(){
 
     // ESTO ES LO PRIMERO QUE SE CARGA EN LA PAGINA
     
-    //localStorage.clear(); para limpiar tabla
+   // localStorage.clear();// para limpiar tabla
     let select = $("#tipo");
 	
     for (var i = 0; i < 6; i++) 
@@ -67,7 +67,7 @@ $(function(){
 
         localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
         console.log(MascotasJson);
-        alert ("Mascota guardada");
+        alert ("Mascota guardada.");
 
         // console.log(MascotasJson);
         
@@ -102,6 +102,11 @@ $(function(){
          
     // }
 
+     function LimpiarLista():void {
+        localStorage.clear();
+        mostrarMascotas();
+     }
+
         function mostrarMascotas(): void {
 
             // let MascotasJson : Clases.Mascota[i].id
@@ -116,20 +121,22 @@ $(function(){
             let tabla = $("#tCuerpo");
             tabla["0"].innerHTML = "";
 
-            // tabla.refresh();
-            // tabla.children[0]
-            // document.getElementById("")
+         
+            
 
             for (var i = 0; i < MascotaJSON.length; i++) 
             {
-
+                let tipoMandar: Clases.tipoMascota = MascotaJSON[i].split(',')[4];
+                
+                // select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
                 //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
                 
-                let variable = "<tr><td>"+ MascotaJSON[i].split(',')[0] + "</td>"+
-                               "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
-                               "<td>"+     MascotaJSON[i].split(',')[2] + "</td>"+
-                               "<td>"+     MascotaJSON[i].split(',')[3] + "</td>"+
-                               "<td>"+     MascotaJSON[i].split(',')[4] + "</td></tr>";
+                let variable = "<tr><td>"+ MascotaJSON[i].split(',')[3] + "</td>"+
+                "<td>"+     MascotaJSON[i].split(',')[0] + "</td>"+
+                "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
+                "<td>"+     Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>"+
+                // "<td>"+ "${Clases.tipoMascota[MascotaJSON[i]]}" +"</td"+
+                "<td>"+     MascotaJSON[i].split(',')[2] + "</td></tr>";
 
                 tabla.append(variable);
                 

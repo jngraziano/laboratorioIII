@@ -10,8 +10,6 @@
             private _edad:number;
             private _cantPatas:number;
             
-            //Creo un array? segun el evento debo buscar algo que me traiga el
-            //array de animales para acceder con la i
             public arrayanimales: JSON[];
 
             constructor(nombre:string,edad:number,cantPatas:number) {
@@ -19,10 +17,6 @@
                 this._nombre=nombre;
                 this._edad=edad;
                 this._cantPatas=cantPatas;
-                  //Inicializar el array?
-                // let arrayanimal:JSON
-                // this.arrayanimales=arraynew[];
-                
             }
 
             
@@ -46,9 +40,6 @@
                 return  this.animalCompleto();
                 
             }
-            // public toArray(): Array{
-
-            // }
 
            
             

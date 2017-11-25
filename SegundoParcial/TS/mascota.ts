@@ -9,14 +9,11 @@
         
 
 
-            constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:number) {
-                
+            constructor(nombre:string,edad:number,cantPatas:number,id:number,tipo:tipoMascota) 
+            {
                 super(nombre,edad,cantPatas);
                 this._id=id;
                 this._tipo=tipo;
-                //Inicializar el array?
-                // let arrayanimal:JSON
-                
             }
 
             public animalCompleto() : string {
@@ -26,11 +23,11 @@
 
             public toJson():string{
                 //let cad:string = super.toJson().replace(`,`,'');
-                let cad:string = super.toJson();
+                // let cad:string = super.toJson();
                 
-                let json:string = cad+this._id+this._tipo;
+                // let json:string = cad+this._id+this._tipo;
 
-                return  JSON.stringify(json);
+                return  JSON.stringify(this.animalCompleto());
                 
             }
 
