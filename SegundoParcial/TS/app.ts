@@ -1,25 +1,25 @@
 /// <reference path="node_modules/@types/jquery/index.d.ts" />
     
     // jQuery:
-
     //copio la carpeta node modules o uso npm init
     // npm install --save @types/jquery
-   
-// $(function(){
-//         localStorage.clear();
-        //  Esto es para limpiar claramente el localStorage
-        
-// }
-namespace Clases{
+
+// namespace Clases{
+let xhr = new XMLHttpRequest();
 $(function(){
 
     // ESTO ES LO PRIMERO QUE SE CARGA EN LA PAGINA
+    
+    //localStorage.clear(); para limpiar tabla
     let select = $("#tipo");
 	
     for (var i = 0; i < 6; i++) 
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
+  
+    mostrarMascotas();
+    
 });
 
        // Agrega esto afuera, hace un metodo con esto
@@ -34,8 +34,6 @@ $(function(){
         // let edad: number = Number ($('#edad').val());
         // let tipo: Clases.tipoMascota = Number ($('#tipo').val());
         // let cantPatas: number = Number ($('#cantidadpatas').val());
-       
-       
     // FORMA 2: ASIGNO USANDO document.getElementById
 
         // let id:number = Number (document.getElementById("ID").value);
@@ -44,16 +42,16 @@ $(function(){
         // let tipo: string = String (document.getElementById("tipo").value);
         // let edad: number = Number (document.getElementById("edad").value);
         // let cantPatas: number = Number (document.getElementById("cantidadpatas").value);
-        
-
-
     // FORMA 3: Creo directamente el objeto mascota
+
+        let tipo: Clases.tipoMascota = Number($('#tipo').val());
+
         let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
                                               Number ($('#edad').val()),
                                               Number ($('#cantidadpatas').val()),
                                               Number ($('#ID').val()), 
-                                            //   tipoMascota ()
-                                              Number ($('#tipo').val()));
+                                              Number($('#tipo').val())
+                                            );
 
         
   
@@ -61,24 +59,25 @@ $(function(){
         //la primera vez no hay nada, las otras veces string
         console.log(nuevaMascota);
         
-            // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
-            let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
-            //console.log(nuevaMascota.toJson()); //ver como anda
+        // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
+        let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
+        console.log(nuevaMascota.toJson()); //ver como anda
 
-            MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
+        MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
-             localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-            console.log(MascotasJson);
-             alert ("Mascota guardada");
-            // console.log(MascotasJson);
-            
-            // Para ver que devuelve:
-            // let devuelve = localStorage.getItem("Mascotas")
-            // console.log(devuelve);
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
+        console.log(MascotasJson);
+        alert ("Mascota guardada");
+
+        // console.log(MascotasJson);
+        
+        // Para ver que devuelve:
+        // let devuelve = localStorage.getItem("Mascotas")
+        // console.log(devuelve);
 
 
-            // mostrarmascotas();
-   
+        mostrarMascotas();
+
      }
 
     //  function filtrarMascotas(tipo:number){
@@ -102,10 +101,48 @@ $(function(){
             
          
     // }
-//         mostrarMascotas();
-//             let MascotasJson : Clases.Mascota[i].id
-//             armo la tabla como el primer parcial con el fastix
-//             #divtabla.html(tabla);
+
+        function mostrarMascotas(): void {
+
+            // let MascotasJson : Clases.Mascota[i].id
+            // armo la tabla como el primer parcial con el fastix
+            // #divtabla.html(tabla);
+
+
+            let MascotasString:string|null = localStorage.getItem("Mascotas");
+            let MascotaJSON : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
+
+
+            let tabla = $("#tCuerpo");
+            tabla["0"].innerHTML = "";
+
+            // tabla.refresh();
+            // tabla.children[0]
+            // document.getElementById("")
+
+            for (var i = 0; i < MascotaJSON.length; i++) 
+            {
+
+                //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
+                
+                let variable = "<tr><td>"+ MascotaJSON[i].split(',')[0] + "</td>"+
+                               "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
+                               "<td>"+     MascotaJSON[i].split(',')[2] + "</td>"+
+                               "<td>"+     MascotaJSON[i].split(',')[3] + "</td>"+
+                               "<td>"+     MascotaJSON[i].split(',')[4] + "</td></tr>";
+
+                tabla.append(variable);
+                
+
+               
+               
+                
+                
+            }
+
+        }
+           
+
 
 //         limpiarCampos();
 //             $txtnombred.val("")
@@ -113,4 +150,5 @@ $(function(){
 //             y que ponga foco en txtid
 
 // armo el json con un array de mascotas
-}
+
+// } CORCHETE DE NAMESPACE 
