@@ -22,8 +22,6 @@ $(function(){
        // Agrega esto afuera, hace un metodo con esto
         // .change(mapearCampos);
 
-
-
         //////////////METODOS//////////////
     function agregarMascota(): void {
     
@@ -104,7 +102,6 @@ $(function(){
                 "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
                 "<td>"+     Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>"+
                 "<td>"+     MascotaJSON[i].split(',')[2] + "</td></tr>";
-
                 tabla.append(variable);
                 
             }

@@ -126,15 +126,24 @@
     <div id="spinner">
     </div>
     <br>
+<!-- PROMEDIO -->
+<div class="">
+    <h2>Sacar promedio</h2>
+
+    <button class='btn' type="button" id="btnPromedio" value="Promedio" onclick="sacarpromedio();">
+        Promedio
+          <i class="glyphicon glyphicon-exclamation-sign"></i>
+    </button>
+  </div>
 
 <!-- CHECKBOX -->
 <div class="checkbox">
   <caption><h2>Filtrar listado por:</h2></caption>
-  <label><input type="checkbox" name="idfiltro" id="idfiltro">ID</label>
-  <label><input type="checkbox" name="nombrefiltro" id="nombrefiltro">NOMBRE</label>
-  <label><input type="checkbox" name="edadfiltro" id="edadfiltro">EDAD</label>
-  <label><input type="checkbox" name="tipofiltro" id="tipofiltro">TIPO</label>
-  <label><input type="checkbox" name="cantPatasfiltro" id="cantPatasfiltro">CANT. PATAS</label>
+  <label><input type="checkbox" name="idfiltro" id="idfiltro" value="ID">ID</label>
+  <label><input type="checkbox" name="nombrefiltro" id="nombrefiltro"value="NOMBRE">NOMBRE</label>
+  <label><input type="checkbox" name="edadfiltro" id="edadfiltro"value="EDAD">EDAD</label>
+  <label><input type="checkbox" name="tipofiltro" id="tipofiltro"value="TIPO">TIPO</label>
+  <label><input type="checkbox" name="cantPatasfiltro" id="cantPatasfiltro"value="CANT PATAS">CANT. PATAS</label>
 </div>
 
 <!-- LISTADO -->
@@ -151,6 +160,7 @@
           <th>CANTIDAD DE PATAS</th>
         </tr>
       </thead>
+
         <!-- TBODY -->
         <tbody id="tCuerpo">
           <!-- DATOS DE LA TABLA -->
@@ -162,5 +172,4 @@
 
 </div>
 </body>
-        
-        </html>
+</html>

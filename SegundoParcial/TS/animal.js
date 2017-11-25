@@ -8,15 +8,9 @@ var Clases;
             this._cantPatas = cantPatas;
         }
         Object.defineProperty(Animal.prototype, "array", {
+            //////////////METODOS//////////////            
             get: function () {
                 return this.arrayanimales;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Animal.prototype, "Nombre", {
-            get: function () {
-                return this._nombre;
             },
             enumerable: true,
             configurable: true
