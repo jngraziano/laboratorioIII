@@ -7,6 +7,12 @@
 // namespace Clases{
 //////////////EVENTOS//////////////
 $(function () {
+    $("#checkFORM :checkbox").change(function () {
+        //boxChange();
+        var checkedValues = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
+        //var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+        alert("click checkbox");
+    });
     var select = $("#tipo");
     for (var i = 0; i < 6; i++) {
         select.append("<option value=" + i + ">" + Clases.tipoMascota[i] + "</option>");
@@ -50,23 +56,47 @@ function LimpiarLista() {
     mostrarMascotas();
 }
 function mostrarMascotas() {
+    var MascotasString = localStorage.getItem("Mascotas");
+    var MascotaJSON = MascotasString == null ? [] : JSON.parse(MascotasString);
+    //para que no muestre 2 veces la misma tabla:
+    var tabla = $("#tCuerpo");
+    tabla["0"].innerHTML = "";
+    for (var i = 0; i < MascotaJSON.length; i++) {
+        var tipoMandar = MascotaJSON[i].split(',')[4];
+        // select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
+        //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
+        var variable = "<tr><td>" + MascotaJSON[i].split(',')[3] + "</td>" +
+            "<td>" + MascotaJSON[i].split(',')[0] + "</td>" +
+            "<td>" + MascotaJSON[i].split(',')[1] + "</td>" +
+            "<td>" + Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>" +
+            "<td>" + MascotaJSON[i].split(',')[2] + "</td></tr>";
+        tabla.append(variable);
+    }
 }
-var MascotasString = localStorage.getItem("Mascotas");
-var MascotaJSON = MascotasString == null ? [] : JSON.parse(MascotasString);
-//para que no muestre 2 veces la misma tabla:
-var tabla = $("#tCuerpo");
-tabla["0"].innerHTML = "";
-for (var i = 0; i < MascotaJSON.length; i++) {
-    var tipoMandar = MascotaJSON[i].split(',')[4];
-    // select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
-    //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
-    var variable = "<tr><td>" + MascotaJSON[i].split(',')[3] + "</td>" +
-        "<td>" + MascotaJSON[i].split(',')[0] + "</td>" +
-        "<td>" + MascotaJSON[i].split(',')[1] + "</td>" +
-        "<td>" + Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>" +
-        "<td>" + MascotaJSON[i].split(',')[2] + "</td></tr>";
-    tabla.append(variable);
-}
+///INFO LEAN///
+// function boxChange(type)
+// {
+// var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+// var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+//     if(type == "not"){
+//         return uncheckedValues;
+//     } else {
+//         return checkedValues;
+//     } 
+// }
+// $(":checkbox").change(function() {
+// $("#checkItems").change(function() {
+//     // boxChange();
+//     alert("estoy aaca");
+//     boxChange("not");
+// });
+// // Only Needed For Buttons
+// $("body").on("click", "button#chk1", function() {
+//     alert (boxChange());
+// });
+// $("body").on("click", "button#chk2", function() {
+//     alert (boxChange("not"));
+// });
 //         limpiarCampos();
 //             $txtnombred.val("")
 //             a selectipo le da 0

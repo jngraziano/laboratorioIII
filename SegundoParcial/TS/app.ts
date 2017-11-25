@@ -9,21 +9,31 @@
         //////////////EVENTOS//////////////
 $(function(){    
     
+    $("#checkFORM :checkbox").change(function() {
+        //boxChange();
+        
+        var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+        //var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+        alert("click checkbox");
+    });
+
+
     let select = $("#tipo");
 	
     for (var i = 0; i < 6; i++) 
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
+    
     mostrarMascotas();
     
-});
+    });
 
        // Agrega esto afuera, hace un metodo con esto
         // .change(mapearCampos);
 
         //////////////METODOS//////////////
-    function agregarMascota(): void {
+ function agregarMascota(): void {
     
     // FORMA 1: Asginado en variables
         // let id: number = Number ($('#ID').val());
@@ -44,51 +54,48 @@ $(function(){
          //si quiero pasarselo con una variable ya guardada
         // let tipo: Clases.tipoMascota = Number($('#tipo').val());
        
-
-        let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
+    let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
                                               Number ($('#edad').val()),
                                               Number ($('#cantidadpatas').val()),
                                               Number ($('#ID').val()), 
                                               Number($('#tipo').val())
                                             );
 
-        
-  
-        let MascotasString:string|null = localStorage.getItem("Mascotas");
-       
-        //la primera vez no hay nada, las otras veces string
-        
-        let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
+    let MascotasString:string|null = localStorage.getItem("Mascotas");
 
-        MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
+    //la primera vez no hay nada, las otras veces string
 
-        localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
+    let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
 
-        alert ("Mascota guardada.");
+    MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
-        // console.log(MascotasJson); //para ver el cargado
-        
-        // let devuelve = localStorage.getItem("Mascotas") // Para ver que devuelve el localstorage
-        // console.log(devuelve);
+    localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
+
+    alert ("Mascota guardada.");
+
+    // console.log(MascotasJson); //para ver el cargado
+
+    // let devuelve = localStorage.getItem("Mascotas") // Para ver que devuelve el localstorage
+    // console.log(devuelve);
 
 
-        mostrarMascotas();
+    mostrarMascotas();
 
-     }
+    }
 
-     function LimpiarLista():void {
+    function LimpiarLista():void {
         localStorage.clear();
         mostrarMascotas();
-     }
+    }
 
-        function mostrarMascotas(): void {
-        }
-            let MascotasString:string|null = localStorage.getItem("Mascotas");
-            let MascotaJSON : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
+    function mostrarMascotas(): void {
+    
+        let MascotasString:string|null = localStorage.getItem("Mascotas");
+        let MascotaJSON : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
 
-            //para que no muestre 2 veces la misma tabla:
-            let tabla = $("#tCuerpo");
-            tabla["0"].innerHTML = "";
+        //para que no muestre 2 veces la misma tabla:
+        let tabla = $("#tCuerpo");
+        tabla["0"].innerHTML = "";
 
             for (var i = 0; i < MascotaJSON.length; i++) 
             {
@@ -106,13 +113,47 @@ $(function(){
                 
             }
 
-        }
-           
+    }
+
+          
 
 
-//         limpiarCampos();
-//             $txtnombred.val("")
-//             a selectipo le da 0
-//             y que ponga foco en txtid
+
+
+        ///INFO LEAN///
+        // function boxChange(type)
+        // {
+        // var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+        // var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+
+        //     if(type == "not"){
+        //         return uncheckedValues;
+        //     } else {
+        //         return checkedValues;
+        //     } 
+        // }
+
+        // $(":checkbox").change(function() {
+        // $("#checkItems").change(function() {
+        //     // boxChange();
+        //     alert("estoy aaca");
+        //     boxChange("not");
+        // });
+
+
+        // // Only Needed For Buttons
+        // $("body").on("click", "button#chk1", function() {
+        //     alert (boxChange());
+        // });
+        // $("body").on("click", "button#chk2", function() {
+        //     alert (boxChange("not"));
+        // });
+
+        //         limpiarCampos();
+        //             $txtnombred.val("")
+        //             a selectipo le da 0
+        //             y que ponga foco en txtid
+
+
 
 // } CORCHETE DE NAMESPACE 
