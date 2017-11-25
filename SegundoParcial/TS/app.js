@@ -5,6 +5,7 @@
 // npm install --save @types/jquery
 // $(function(){
 //         localStorage.clear();
+//  Esto es para limpiar claramente el localStorage
 // }
 var Clases;
 (function (Clases) {

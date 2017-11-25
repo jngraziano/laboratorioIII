@@ -7,6 +7,7 @@
    
 // $(function(){
 //         localStorage.clear();
+        //  Esto es para limpiar claramente el localStorage
         
 // }
 namespace Clases{
