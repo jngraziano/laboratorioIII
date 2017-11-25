@@ -1,23 +1,20 @@
 /// <reference path="node_modules/@types/jquery/index.d.ts" />
-    
     // jQuery:
     //copio la carpeta node modules o uso npm init
     // npm install --save @types/jquery
+    //recordar que debe ir primero de todo.
 
 // namespace Clases{
 
-$(function(){
-
-    // ESTO ES LO PRIMERO QUE SE CARGA EN LA PAGINA
+        //////////////EVENTOS//////////////
+$(function(){    
     
-   // localStorage.clear();// para limpiar tabla
     let select = $("#tipo");
 	
     for (var i = 0; i < 6; i++) 
     {
         select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
-  
     mostrarMascotas();
     
 });
@@ -26,6 +23,8 @@ $(function(){
         // .change(mapearCampos);
 
 
+
+        //////////////METODOS//////////////
     function agregarMascota(): void {
     
     // FORMA 1: Asginado en variables
@@ -44,7 +43,9 @@ $(function(){
         // let cantPatas: number = Number (document.getElementById("cantidadpatas").value);
     // FORMA 3: Creo directamente el objeto mascota
 
-        let tipo: Clases.tipoMascota = Number($('#tipo').val());
+         //si quiero pasarselo con una variable ya guardada
+        // let tipo: Clases.tipoMascota = Number($('#tipo').val());
+       
 
         let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
                                               Number ($('#edad').val()),
@@ -56,23 +57,20 @@ $(function(){
         
   
         let MascotasString:string|null = localStorage.getItem("Mascotas");
+       
         //la primera vez no hay nada, las otras veces string
-        console.log(nuevaMascota);
         
-        // let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(nuevaMascota.toJson()); // ESTO ES UN IF
         let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
-        console.log(nuevaMascota.toJson()); //ver como anda
 
         MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
 
         localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-        console.log(MascotasJson);
+
         alert ("Mascota guardada.");
 
-        // console.log(MascotasJson);
+        // console.log(MascotasJson); //para ver el cargado
         
-        // Para ver que devuelve:
-        // let devuelve = localStorage.getItem("Mascotas")
+        // let devuelve = localStorage.getItem("Mascotas") // Para ver que devuelve el localstorage
         // console.log(devuelve);
 
 
@@ -80,49 +78,19 @@ $(function(){
 
      }
 
-    //  function filtrarMascotas(tipo:number){
-    //      let mascotaslFiltradas:Array<Clases.Mascota>;
-
-    //      let MascotasString: string | null = localStorage.getItem("Mascotas");
-    //      let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF
-    //      (nuevamascota.toJSON());
-
-    //      MascotasJSON.push(JSON.parse(nuevaMascota.toJSON()));
-    //  }
-    //  function filtrar(tipo:any())
-    //  {
-
-    //  }
-    //  function mostrarMascotas() {
-    //     let MascotasJson : Clases.Mascota[i].id
-    //            //     armo la tabla como el primer parcial con el fastix
-    //               #divtabla.html(tabla);
-
-            
-         
-    // }
-
      function LimpiarLista():void {
         localStorage.clear();
         mostrarMascotas();
      }
 
         function mostrarMascotas(): void {
-
-            // let MascotasJson : Clases.Mascota[i].id
-            // armo la tabla como el primer parcial con el fastix
-            // #divtabla.html(tabla);
-
-
+        }
             let MascotasString:string|null = localStorage.getItem("Mascotas");
             let MascotaJSON : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
 
-
+            //para que no muestre 2 veces la misma tabla:
             let tabla = $("#tCuerpo");
             tabla["0"].innerHTML = "";
-
-         
-            
 
             for (var i = 0; i < MascotaJSON.length; i++) 
             {
@@ -135,15 +103,9 @@ $(function(){
                 "<td>"+     MascotaJSON[i].split(',')[0] + "</td>"+
                 "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
                 "<td>"+     Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>"+
-                // "<td>"+ "${Clases.tipoMascota[MascotaJSON[i]]}" +"</td"+
                 "<td>"+     MascotaJSON[i].split(',')[2] + "</td></tr>";
 
                 tabla.append(variable);
-                
-
-               
-               
-                
                 
             }
 
@@ -155,7 +117,5 @@ $(function(){
 //             $txtnombred.val("")
 //             a selectipo le da 0
 //             y que ponga foco en txtid
-
-// armo el json con un array de mascotas
 
 // } CORCHETE DE NAMESPACE 
