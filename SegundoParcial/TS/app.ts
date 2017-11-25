@@ -1,5 +1,4 @@
-//  namespace Clases{
-    /// <reference path="node_modules/@types/jquery/index.d.ts" />
+/// <reference path="node_modules/@types/jquery/index.d.ts" />
     
     // jQuery:
 
@@ -10,6 +9,7 @@
 //         localStorage.clear();
         
 // }
+namespace Clases{
 $(function(){
 
     // ESTO ES LO PRIMERO QUE SE CARGA EN LA PAGINA
@@ -17,7 +17,7 @@ $(function(){
 	
     for (var i = 0; i < 6; i++) 
     {
-        select.append("<option value="+i+">"+Clases.Animal.array[i]+"</option>");
+        select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
     }
 });
 
@@ -27,7 +27,7 @@ $(function(){
 
     function agregarMascota(): void {
     
-    // Asginado en variables
+    // FORMA 1: Asginado en variables
         // let id: number = Number ($('#ID').val());
         // let nombre: string = String ($('#nombre').val());
         // let edad: number = Number ($('#edad').val());
@@ -35,7 +35,7 @@ $(function(){
         // let cantPatas: number = Number ($('#cantidadpatas').val());
        
        
-    //ASIGNO USANDO document.getElementById
+    // FORMA 2: ASIGNO USANDO document.getElementById
 
         // let id:number = Number (document.getElementById("ID").value);
         // let nombre:string = String (document.getElementById("nombre").value);
@@ -44,14 +44,16 @@ $(function(){
         // let edad: number = Number (document.getElementById("edad").value);
         // let cantPatas: number = Number (document.getElementById("cantidadpatas").value);
         
-    //Creo directamente el objeto mascota
+
+
+    // FORMA 3: Creo directamente el objeto mascota
         let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
                                               Number ($('#edad').val()),
                                               Number ($('#cantidadpatas').val()),
                                               Number ($('#ID').val()), 
+                                            //   tipoMascota ()
                                               Number ($('#tipo').val()));
 
-         //let nuevaMascota = new Clases.Mascota(nombre,edad,cantPatas,id,tipo);
         
   
         let MascotasString:string|null = localStorage.getItem("Mascotas");
@@ -110,4 +112,4 @@ $(function(){
 //             y que ponga foco en txtid
 
 // armo el json con un array de mascotas
-
+}
