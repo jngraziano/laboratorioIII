@@ -1,18 +1,38 @@
+*{
+    box-sizing: border-box;
+    
+    /*Lo que estoy diciendo es que el borde es el borde de la caja*/
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
+    border: 10px;
+    float: right;
+    border-color: darkred;
+    margin: 0 auto;
+    text-align: center;
 }
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
 
 th {
     background-color: lightseagreen;
-    color: white;
+    color: black;
+    text-align: center;
+}
+/* td {
+   
+    padding: 8px;
+} */
+
+/* 
+tr:nth-child(even){background-color: #f2f2f2} */
+
+h2{
+    text-align: center;
+}
+
+#checkboxx{
+    text-align: center;
 }
 input[type=text] {
     width: 100%;
@@ -65,4 +85,5 @@ input[type=button]:hover {
 
 .carousel-caption {
   color: black;
+  text-align: center;
 }
