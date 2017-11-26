@@ -1,4 +1,3 @@
-"use strict";
 var Clases;
 (function (Clases) {
     var Animal = /** @class */ (function () {
@@ -7,16 +6,15 @@ var Clases;
             this._edad = edad;
             this._cantPatas = cantPatas;
         }
-        Object.defineProperty(Animal.prototype, "array", {
-            //////////////METODOS//////////////            
+        Object.defineProperty(Animal.prototype, "Nombre", {
             get: function () {
-                return this.arrayanimales;
+                return this._nombre;
             },
             enumerable: true,
             configurable: true
         });
         Animal.prototype.animalCompleto = function () {
-            return this._nombre + "," + this._edad + "," + this._cantPatas;
+            return this._nombre + ";" + this._edad + ";" + this._cantPatas;
         };
         Animal.prototype.toJson = function () {
             return this.animalCompleto();

@@ -11,9 +11,8 @@
         
             //FORM MODIFICADO POR CHECKBOX
             $("#checkFORM :checkbox").change(function() {
-                var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-                //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-                tablaDinamica(checkedValues);
+                var checkboxON = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
+                tablaDinamica(checkboxON);
             });
         
             var i = 0;
@@ -25,35 +24,47 @@
             mostrarMascotas();
         });
 
-
+        function LimpiarLista():void
+        {
+               localStorage.clear();
+               mostrarMascotas();
+        }
 
         //////////////METODOS//////////////
-
-        function tablaDinamica(checkedValues) 
+        function tablaDinamica(checkboxON:any) 
         {
-            let row_name = checkedValues;
-            // let estiloCabeceraAp="<tr class='info'>";
+            //CABECERA DE LA TABLA
+            let row_name = checkboxON;
             let cabecera = $("#tCabecera");
             cabecera["0"].innerHTML ="";
-            // cabecera.append(estiloCabeceraAp);
-            if(row_name.length== 0){
-                // alert("Estoy aca");
-                
-
-            }
-            else{
+        
             row_name.forEach(element => 
             {
                 if (element != "") 
                 {
-                    // let cabeceraArmada = "<th>"+element+"</th>";
                     let cabeceraArmada = $('<th>' + element + '</th>');
                     cabecera.append(cabeceraArmada);
-                }
-                
-            });}
-            // let estiloCabeceraCI="</tr>";
-            // cabecera.append(estiloCabeceraCI);
+                } 
+            });
+        
+            //CUERPO DE LA TABLA
+            let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+            
+            let tabla = $("#tCuerpo");
+            tabla["0"].innerHTML ="";
+            for (var i = 0; i < MascotasString.length ; i++) 
+            {
+                let mascotaActual = JSON.parse(MascotasString[i]);
+                let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+        
+                let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                                "<td>"      + mascotaActual._nombre                     + "</td>"+
+                                "<td>"      + mascotaActual._edad                       + "</td>"+
+                                "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                                "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
+                tabla.append(varAppend); 
+           }
+        
         }
  function agregarMascota(): void {
     
@@ -76,71 +87,44 @@
          //si quiero pasarselo con una variable ya guardada
         // let tipo: Clases.tipoMascota = Number($('#tipo').val());
        
-    let nuevaMascota = new Clases.Mascota(String ($('#nombre').val()),
-                                              Number ($('#edad').val()),
-                                              Number ($('#cantidadpatas').val()),
-                                              Number ($('#ID').val()), 
-                                              Number($('#tipo').val())
-                                            );
-
-    let MascotasString:string|null = localStorage.getItem("Mascotas");
-    
-    //la primera vez no hay nada, las otras veces string
-
-    let MascotasJson : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-    
-    MascotasJson.push( JSON.parse(nuevaMascota.toJson()));
-
-    localStorage.setItem("Mascotas",JSON.stringify(MascotasJson));
-
-    alert ("Mascota guardada.");
-
-    // console.log(MascotasJson); //para ver el cargado
-
-    // let devuelve = localStorage.getItem("Mascotas") // Para ver que devuelve el localstorage
-    // console.log(devuelve);
-
-
-    mostrarMascotas();
-
+        let tipo: Clases.tipoMascota  = Number($('#tipo').val()); 
+        let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
+                                                Number ($('#edad').val()),
+                                                Number ($('#cantidadpatas').val()),
+                                                Number ($('#id').val()),
+                                                tipo
+                                                );
+        
+        let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
+        // //la primera vez no hay nada, las otras veces string
+        // let MascotasJson : JSON[] = MascotasString.length == 0 ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
+            MascotasString.push( JSON.stringify(nuevaMascota));
+            localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+            
+        console.log(MascotasString);
+        alert ("Mascota guardada");
+        mostrarMascotas(); 
     }
 
-    function LimpiarLista():void {
-        localStorage.clear();
-        mostrarMascotas();
-    }
-
-    function mostrarMascotas(): void {
-    
-        let MascotasString:string|null = localStorage.getItem("Mascotas");
-        let MascotaJSON : JSON[] = MascotasString == null ? [] : JSON.parse(MascotasString);
-
-        //para que no muestre 2 veces la misma tabla:
+    function mostrarMascotas():void
+    {
+        let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
+        
         let tabla = $("#tCuerpo");
-        tabla["0"].innerHTML = "";
-
-            for (var i = 0; i < MascotaJSON.length; i++) 
-            {
-                let tipoMandar: Clases.tipoMascota = MascotaJSON[i].split(',')[4];
-                
-                // select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
-              
-                let variable = "<tr><td>"+ MascotaJSON[i].split(',')[3] + "</td>"+
-                "<td>"+     MascotaJSON[i].split(',')[0] + "</td>"+
-                "<td>"+     MascotaJSON[i].split(',')[1] + "</td>"+
-                "<td>"+     Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>"+
-                "<td>"+     MascotaJSON[i].split(',')[2] + "</td></tr>";
-
-                //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
-               
-
-                tabla.append(variable);
-                
-            }
-
-        }
-
-
+        tabla["0"].innerHTML ="";
+        for (var i = 0; i < MascotasString.length ; i++) 
+        {
+            let mascotaActual = JSON.parse(MascotasString[i]);
+            let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+    
+            let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
+                            "<td>"      + mascotaActual._nombre                     + "</td>"+
+                            "<td>"      + mascotaActual._edad                       + "</td>"+
+                            "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                            "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
+            tabla.append(varAppend); 
+       }
+    }
 
 
 

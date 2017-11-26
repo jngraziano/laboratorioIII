@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -19,9 +18,8 @@ var Clases;
             _this._tipo = tipo;
             return _this;
         }
-        //////////////METODOS//////////////
         Mascota.prototype.animalCompleto = function () {
-            return _super.prototype.animalCompleto.call(this) + "," + this._id + "," + this._tipo;
+            return _super.prototype.animalCompleto.call(this) + ";" + this._id + ";" + this._tipo;
         };
         Mascota.prototype.toJson = function () {
             return JSON.stringify(this.animalCompleto());
