@@ -1,27 +1,47 @@
 "use strict";
 /// <reference path="node_modules/@types/jquery/index.d.ts" />
+// namespace Clases{
 // jQuery:
 //copio la carpeta node modules o uso npm init
 // npm install --save @types/jquery
 //recordar que debe ir primero de todo.
-// namespace Clases{
 //////////////EVENTOS//////////////
 $(function () {
+    //FORM MODIFICADO POR CHECKBOX
     $("#checkFORM :checkbox").change(function () {
-        //boxChange();
         var checkedValues = $('input:checkbox:checked.checkItems').map(function () { return this.value; }).get();
-        //var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-        alert("click checkbox");
+        //     var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
+        tablaDinamica(checkedValues);
     });
+    var i = 0;
     var select = $("#tipo");
     for (var i = 0; i < 6; i++) {
         select.append("<option value=" + i + ">" + Clases.tipoMascota[i] + "</option>");
     }
     mostrarMascotas();
 });
-// Agrega esto afuera, hace un metodo con esto
-// .change(mapearCampos);
 //////////////METODOS//////////////
+function tablaDinamica(checkedValues) {
+    var row_name = checkedValues;
+    // let estiloCabeceraAp="<tr class='info'>";
+    var cabecera = $("#tCabecera");
+    cabecera["0"].innerHTML = "";
+    // cabecera.append(estiloCabeceraAp);
+    if (row_name.length == 0) {
+        // alert("Estoy aca");
+    }
+    else {
+        row_name.forEach(function (element) {
+            if (element != "") {
+                // let cabeceraArmada = "<th>"+element+"</th>";
+                var cabeceraArmada = $('<th>' + element + '</th>');
+                cabecera.append(cabeceraArmada);
+            }
+        });
+    }
+    // let estiloCabeceraCI="</tr>";
+    // cabecera.append(estiloCabeceraCI);
+}
 function agregarMascota() {
     // FORMA 1: Asginado en variables
     // let id: number = Number ($('#ID').val());
@@ -42,7 +62,7 @@ function agregarMascota() {
     var nuevaMascota = new Clases.Mascota(String($('#nombre').val()), Number($('#edad').val()), Number($('#cantidadpatas').val()), Number($('#ID').val()), Number($('#tipo').val()));
     var MascotasString = localStorage.getItem("Mascotas");
     //la primera vez no hay nada, las otras veces string
-    var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString);
+    var MascotasJson = MascotasString == null ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
     MascotasJson.push(JSON.parse(nuevaMascota.toJson()));
     localStorage.setItem("Mascotas", JSON.stringify(MascotasJson));
     alert("Mascota guardada.");
@@ -64,16 +84,36 @@ function mostrarMascotas() {
     for (var i = 0; i < MascotaJSON.length; i++) {
         var tipoMandar = MascotaJSON[i].split(',')[4];
         // select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
-        //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
         var variable = "<tr><td>" + MascotaJSON[i].split(',')[3] + "</td>" +
             "<td>" + MascotaJSON[i].split(',')[0] + "</td>" +
             "<td>" + MascotaJSON[i].split(',')[1] + "</td>" +
             "<td>" + Clases.tipoMascota[MascotaJSON[i].split(',')[4]] + "</td>" +
             "<td>" + MascotaJSON[i].split(',')[2] + "</td></tr>";
+        //tabla.append("${Clases.tipoMascota[MascotaJSON[i].nombre]}<td td> ");
         tabla.append(variable);
     }
 }
 ///INFO LEAN///
+// function verificarCheck() {
+//     var row_name = $("#checkFORM : checkbox").val();
+//     alert(row_name);
+//     if (row_name != "") {
+//         var row = $('<tr><td>' + row_name + '</td></tr>');
+//         $('input[type="checkbox"]').each(function() 
+//         {
+//             if ($(this).is(':checked')) 
+//             {
+//                row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
+//             } 
+//             else 
+//             {
+//                  row.append('<td></td>')
+//             }
+//         })
+//         row.append('<td></td>')
+//         $("table.printer-row tbody tr:last").before(row)
+//     }
+// }
 // function boxChange(type)
 // {
 // var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();

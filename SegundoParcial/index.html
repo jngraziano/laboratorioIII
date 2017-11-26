@@ -19,7 +19,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
     <!-- CSS -->
-    <!-- <link rel="stylesheet" href="css/estilos.css"> --> 
+    <!-- <link rel="stylesheet" href="css/estilos.css">  -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <title>Laboratorio III - Segundo Parcial</title>
@@ -136,41 +136,52 @@
     </button>
   </div>
 
-<!-- CHECKBOX -->
+<!-- <!— CHECKBOX —> -->
 <form id="checkFORM">
-  <div class="checkbox">
-  <caption><h2>Filtrar listado por:</h2></caption>
-  <label><input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID</label>
-  <label><input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro"value="NOMBRE">NOMBRE</label>
-  <label><input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro"value="EDAD">EDAD</label>
-  <label><input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro"value="TIPO">TIPO</label>
-  <label><input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro"value="CANT PATAS">CANT. PATAS</label>
+    <div class="checkbox">
+      <caption><h2>Filtrar listado por:</h2></caption>
+      <label>
+          <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
+      </label>
+
+      <label>
+          <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
+      </label>
+
+      <label>
+        <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
+      </label>
+
+      <label>
+          <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
+      </label>
+      <label>
+        <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
+    </label>
   </div>
 </form>
-<!-- LISTADO -->
+<!-- TABLA LISTADO -->
+</div>
 <section id="listado" class="container" style="padding-top: 45px;">
-  <caption><h2>Listado de animales inscriptos</h2></caption>
-  <div class="table-responsive">
-    <table class="table table-striped table-hover table-condensed table-bordered " id="tabla">
-      <thead>
-        <tr class="info">
-          <th>ID</th>
-          <th>NOMBRE</th>
-          <th>EDAD</th>
-          <th>TIPO</th>
-          <th>CANTIDAD DE PATAS</th>
-        </tr>
+<h2>Listado de Mascotas</h2>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-condensed table-bordered" id="tabla">
+    <tr class='info'>
+      <thead id="tCabecera">
+         <!-- <tr class="info">  -->
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Tipo</th>
+        <th>Patas</th>
+      
       </thead>
-
-        <!-- TBODY -->
-        <tbody id="tCuerpo">
-          <!-- DATOS DE LA TABLA -->
-          </tbody>
-
-            </table>
-          </div>
-        </section>
-
+    </tr>
+    <tbody id="tCuerpo">
+    </tbody>
+  </table>
+</div>
+</section>
 </div>
 </body>
 </html>

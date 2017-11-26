@@ -20,8 +20,9 @@
         return `${super.animalCompleto()},${this._id},${this._tipo}`;
         }
 
-        public toJson():string{
-            return  JSON.stringify(this.animalCompleto());
+        public toJson():string
+        {
+            return JSON.stringify(this.animalCompleto()); 
         }
 
 
