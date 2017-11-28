@@ -111,7 +111,7 @@
                     checkboxON.includes("ID")       == true ? tablaTXT.append("<td id='mascID"      +i+"'>" +$('#mascID'+i)[0].innerHTML                    + "</td>") : null ; 
                     checkboxON.includes("NOMBRE")   == true ? tablaTXT.append("<td id='mascNOM"     +i+"'>" +$('#mascNOM'+i)[0].innerHTML                    + "</td>") : null ; 
                     checkboxON.includes("EDAD")     == true ? tablaTXT.append("<td id='mascEDAD"    +i+"'>" +$('#mascEDAD'+i)[0].innerHTML                    + "</td>") : null ; 
-                    checkboxON.includes("TIPO")     == true ? tablaTXT.append("<td id='mascTIPO"    +i+"'>" +Clases.tipoMascota[$('#mascTIPO'+i)[0].innerHTML]+ "</td>") : null ; 
+                    checkboxON.includes("TIPO")     == true ? tablaTXT.append("<td id='mascTIPO"    +i+"'>" + CambioTipo(Clases.tipoMascota[$("#mascTIPO"+i)[0].innerHTML]) + "</td>") : null ; 
                     checkboxON.includes("CANTPATAS")== true ? tablaTXT.append("<td id='mascPATAS"   +i+"'>" +$('#mascPATAS'+i)[0].innerHTML                    + "</td>") : null ; 
                     tablaTXT.append("</tr></table>");
                 }
@@ -138,7 +138,26 @@
                 mostrarMascotas();
             }
         }
-        
+        function CambioTipo(number):string
+        {
+           switch (number) {
+                case 0:
+                    return "PERRO";
+                case 1:
+                    return "GATO";
+                case 2:
+                    return "REPTIL";
+                case 3:
+                    return "ROEDOR";
+                case 4:
+                    return "PEZ";
+                case 5:
+                    return "AVE";
+               default:
+                   break;
+           }
+
+        }
         /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
         function mostrarMascotas(valor?):void
         {
@@ -187,7 +206,7 @@
         // let id: number = Number ($('#ID').val());
         // let nombre: string = String ($('#nombre').val());
         // let edad: number = Number ($('#edad').val());
-        // let tipo: Clases.tipoMascota = Number ($('#tipo').val());
+        // let tipo: Clases.tipoMasctipoMascota = Number ($('#tipo').val());
         // let cantPatas: number = Number ($('#cantidadpatas').val());
     // FORMA 2: ASIGNO USANDO document.getElementById
 
