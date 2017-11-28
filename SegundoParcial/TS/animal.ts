@@ -14,10 +14,10 @@
              this._cantPatas=cantPatas;    
          }
              
-         public get Nombre() : string 
-         {
-             return this._nombre;
-         }
+        //  public get Nombre() : string 
+        //  {
+        //      return this._nombre;
+        //  }
  
          public animalCompleto() : string 
          {

@@ -6,37 +6,64 @@
     //copio la carpeta node modules o uso npm init
     // npm install --save @types/jquery
     //recordar que debe ir primero de todo.
+
+
         //////////////EVENTOS//////////////
     $(function(){
-        
-            //FORM MODIFICADO POR CHECKBOX
-            $("#checkFORM :checkbox").change(function() {
-                encabezadoCheck();
-            });
-        
+    
+        //FORM MODIFICADO PARA CHECKBOX
+        $("#checkFORM :checkbox").change(function() {
             encabezadoCheck();
-        
-            var i = 0;
-            let select = $("#tipo");
-            for (var i = 0; i < 6; i++) 
-            {
-                select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
-            }
-            mostrarMascotas();
         });
+        
+        //BOTON FILTRAR
+        $("#filtrarPor").change(function(){
+            let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
+            mostrarMascotas(valorFiltro);
+        });
+
+        //CARGA DE LA PAGINA//
+        encabezadoCheck();
+        cargoMenusEncabezado();
+        mostrarMascotas();
+});
+
+
+
         //////////////METODOS//////////////
+        
+        //LIMPIAR LOCALSTORAGE
         function LimpiarLista():void
         {
                localStorage.clear();
                mostrarMascotas();
         }
+        
+        
+        //TRAIGO EN UN ARRAY LOS VALORES DEVUELTOS DE LOS CHECKBOX ON
+        //ARMO LA TABLA DINAMICA PASANDO LOS ENCABEZADOS Y FILTROS A MOSTRAR COLUMNAS
         function encabezadoCheck()
         {
             var checkboxON = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
             tablaDinamica(checkboxON);
         }
 
-        
+        //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
+        function cargoMenusEncabezado()
+        {
+            //ENCABEZADO DE FORM DE CARGA
+            var i = 0;
+            let select = $("#tipo");
+            for (var i = 0; i < 6; i++) 
+            {
+                select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
+            }
+            //ENCABEZADO DE LA SECCION DE FILTRO
+            var filtrar = $("#filtrarPor");
+            filtrar[0].innerHTML = select[0].innerHTML ;
+        }
+
+
         function tablaDinamica(checkboxON) 
         {
             //CHEQUEO SI ESTAN LOS TILDES DE CHECK O NO 
