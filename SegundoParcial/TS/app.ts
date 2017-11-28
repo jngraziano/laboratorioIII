@@ -9,31 +9,33 @@
 
 
         //////////////EVENTOS//////////////
-    $(function(){
-    
-        //FORM MODIFICADO PARA CHECKBOX
+        $(function(){
+            
+                
+             //FORM MODIFICADO POR CHECKBOX
         $("#checkFORM :checkbox").change(function() {
             encabezadoCheck();
         });
-        
         //BOTON FILTRAR
         $("#filtrarPor").change(function(){
             let valorFiltro = $('#filtrarPor').map(function() { return this.value; }).get();
             mostrarMascotas(valorFiltro);
+            tablaAux = undefined;
         });
 
-        //CARGA DE LA PAGINA//
-        encabezadoCheck();
-        cargoMenusEncabezado();
-        mostrarMascotas();
-});
+            //CARGA DE LA PAGINA
+            encabezadoCheck();
+            cargoMenusEncabezado();
+            mostrarMascotas();
+            
+        });
 
 
 
         //////////////METODOS//////////////
         
         //LIMPIAR LOCALSTORAGE
-        function LimpiarLista():void
+        function limpiarLista():void
         {
                localStorage.clear();
                mostrarMascotas();
@@ -53,7 +55,7 @@
         {
             //ENCABEZADO DE FORM DE CARGA
             var i = 0;
-            let select = $("#tipo");
+            let select = $("#tipoMasc");
             for (var i = 0; i < 6; i++) 
             {
                 select.append("<option value="+i+">"+Clases.tipoMascota[i]+"</option>");
@@ -62,17 +64,22 @@
             var filtrar = $("#filtrarPor");
             filtrar[0].innerHTML = select[0].innerHTML ;
         }
-
-
+       
+       
+       
+        var tablaAux;
+        // var tablaAppend;
+        //ARMO LA TABLA  DINAMICA
         function tablaDinamica(checkboxON) 
         {
-            //CHEQUEO SI ESTAN LOS TILDES DE CHECK O NO 
+            //CHEQUEO SI ES LA CARGA INICIAL O SI ENTRA POR EL CHANGE DE CHECKBOX
             if(checkboxON.length != 0)
             {
+            //TABLA DINAMICA, ENTRA POR EVENTO
+                //CABECERA DE LA TABLA
                 let row_name = checkboxON;
                 let cabecera = $("#tCabecera");
                 cabecera["0"].innerHTML ="";
-                // cabecera.append(`<tr class="info">`);
                 row_name.forEach(element => 
                 {
                     if (element != "") 
@@ -80,32 +87,45 @@
                         let cabeceraArmada = $('<th>' + element + '</th>');
                         cabecera.append(cabeceraArmada);
                     } 
-                });
+                }); 
                 
-               
-                //CUERPO DE LA TABLA
-                let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
-                
-                let tabla = $("#tCuerpo");
-                tabla["0"].innerHTML ="";
-        
-                for (var i = 0; i < MascotasString.length ; i++) 
+                let tablaTXT = $("#tCuerpoTXT");
+                var ciclo;
+                if(tablaAux == null)    
                 {
-                    let mascotaActual = JSON.parse(MascotasString[i]);
-                    //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
-                    tabla.append("<tr>");
+                    var primeraVez = 1;
+                    tablaAux = $("#tCuerpoAUX");  
         
-                    checkboxON.includes("ID")       == true ? tabla.append("<td>"+mascotaActual._id                         + "</td>") : null ; 
-                    checkboxON.includes("NOMBRE")   == true ? tabla.append("<td>"+mascotaActual._nombre                     + "</td>") : null ; 
-                    checkboxON.includes("EDAD")     == true ? tabla.append("<td>"+mascotaActual._edad                       + "</td>") : null ; 
-                    checkboxON.includes("TIPO")     == true ? tabla.append("<td>"+Clases.tipoMascota[mascotaActual._tipo]   + "</td>") : null ; 
-                    checkboxON.includes("CANTPATAS")== true ? tabla.append("<td>"+mascotaActual._cantPatas                  + "</td>") : null ; 
-                    tabla.append("</tr></table>");
+                    ciclo = $("#tCuerpo")[0].childNodes.length;
                 }
-        
+                else 
+                { 
+                    ciclo = $("#tCuerpoAUX")[0].childNodes.length ;
+                    tablaTXT[0].innerHTML = "";
+                }
+                
+                for (var i = 0; i < ciclo ; i++) 
+                {
+                    //AGREGO LAS COLUMNAS SEGUN VAYAN O NO
+                    tablaTXT.append("<tr>");
+                    checkboxON.includes("ID")       == true ? tablaTXT.append("<td id='mascID"      +i+"'>" +$('#mascID'+i)[0].innerHTML                    + "</td>") : null ; 
+                    checkboxON.includes("NOMBRE")   == true ? tablaTXT.append("<td id='mascNOM"     +i+"'>" +$('#mascNOM'+i)[0].innerHTML                    + "</td>") : null ; 
+                    checkboxON.includes("EDAD")     == true ? tablaTXT.append("<td id='mascEDAD"    +i+"'>" +$('#mascEDAD'+i)[0].innerHTML                    + "</td>") : null ; 
+                    checkboxON.includes("TIPO")     == true ? tablaTXT.append("<td id='mascTIPO"    +i+"'>" +Clases.tipoMascota[$('#mascTIPO'+i)[0].innerHTML]+ "</td>") : null ; 
+                    checkboxON.includes("CANTPATAS")== true ? tablaTXT.append("<td id='mascPATAS"   +i+"'>" +$('#mascPATAS'+i)[0].innerHTML                    + "</td>") : null ; 
+                    tablaTXT.append("</tr></table>");
+                }
+                let tablaFinal   = $("#tCuerpo");
+                let innerHtmlAux = tablaFinal["0"].innerHTML;
+                tablaFinal["0"].innerHTML =""; 
+                tablaFinal["0"].innerHTML = tablaTXT["0"].innerHTML;
+                
+                if(primeraVez == 1)   {tablaAux["0"].innerHTML = innerHtmlAux;}
             }
             else
             {  
+            //TABLA ENTERA, VIENE POR EL LOAD DE LA PAGINA
+                //CABECERA DE LA TABLA
                 let cabecera = $("#tCabecera");
                 cabecera["0"].innerHTML ="";
                 var devuelve =  "<th>ID</th>"       +
@@ -114,10 +134,52 @@
                                 "<th>TIPO</th>"     +  
                                 "<th>CANTPATAS</th>";
                 cabecera.append(devuelve);
-        
+                //CUERPO DE LA TABLA
                 mostrarMascotas();
             }
         }
+        
+        /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
+        function mostrarMascotas(valor?):void
+        {
+            let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");    
+            //ARMO EL ARRAY DE MASCOTAS, SEGUN SI ES TABLA FULL O FILTRADA
+            if(valor)
+            {
+            //MUESTRO EL LISTADO DE MASCOTAS SEGUN FILTRO
+               let stringFinal = MascotasString
+                                        .filter(function(mascota){
+                                            let mascotaRet = JSON.parse(mascota);
+                                            return mascotaRet._tipo == valor;
+                                        })
+                                        .map(function(mascota){
+                                            let mascotaRet = JSON.parse(mascota);
+                                            return mascotaRet;
+                                        });   
+                MascotasString= stringFinal;
+            }
+               
+            let tabla = $("#tCuerpo");
+            tabla["0"].innerHTML ="";
+            for (var i = 0; i < MascotasString.length ; i++) 
+            {
+                let mascotaActual;
+                if(valor){mascotaActual = MascotasString[i];}
+                else     {mascotaActual = JSON.parse(MascotasString[i]);}
+                
+                let miTipo = Clases.tipoMascota[mascotaActual._tipo];
+        
+                let varAppend = "<tr><td id='mascID"+i+"'>"+ mascotaActual._id                         + "</td>"+
+                                "<td id='mascNOM"   +i+"'>"+ mascotaActual._nombre                     + "</td>"+
+                                "<td id='mascEDAD"  +i+"'>"+ mascotaActual._edad                       + "</td>"+
+                                "<td id='mascTIPO"  +i+"'>"+ Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
+                                "<td id='mascPATAS" +i+"'>"+ mascotaActual._cantPatas                  + "</td></tr>"       
+                tabla.append(varAppend); 
+           }    
+           
+        }
+        
+        
 
  function agregarMascota(): void {
     
@@ -140,117 +202,20 @@
          //si quiero pasarselo con una variable ya guardada
         // let tipo: Clases.tipoMascota = Number($('#tipo').val());
        
-        let tipo: Clases.tipoMascota  = Number($('#tipo').val()); 
+        let tipo: Clases.tipoMascota  = Number($('#tipoMasc').val()); 
         let nuevaMascota = new Clases.Mascota(  String ($('#nombre').val()),
                                                 Number ($('#edad').val()),
-                                                Number ($('#cantidadpatas').val()),
+                                                Number ($('#patas').val()),
                                                 Number ($('#id').val()),
                                                 tipo
                                                 );
         
         let MascotasString  = JSON.parse(localStorage.getItem("Mascotas") || "[]");
-        // //la primera vez no hay nada, las otras veces string
-        // let MascotasJson : JSON[] = MascotasString.length == 0 ? [] : JSON.parse(MascotasString); // ESTO ES UN IF        
-            MascotasString.push( JSON.stringify(nuevaMascota));
-            localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
+        MascotasString.push( JSON.stringify(nuevaMascota));
+        localStorage.setItem("Mascotas",JSON.stringify(MascotasString));
             
         console.log(MascotasString);
-        alert ("Mascota guardada");
+        alert ("Mascota guardada exitosamente.");
         mostrarMascotas(); 
+        $('#formCARGA').trigger("reset");
     }
-
-    function mostrarMascotas():void
-    {
-        let MascotasString:string|null =  JSON.parse(localStorage.getItem("Mascotas") || "[]");
-        
-        let tabla = $("#tCuerpo");
-        tabla["0"].innerHTML ="";
-        for (var i = 0; i < MascotasString.length ; i++) 
-        {
-            let mascotaActual = JSON.parse(MascotasString[i]);
-            let miTipo = Clases.tipoMascota[mascotaActual._tipo];
-    
-            let varAppend = "<tr><td>"  + mascotaActual._id                         + "</td>"+
-                            "<td>"      + mascotaActual._nombre                     + "</td>"+
-                            "<td>"      + mascotaActual._edad                       + "</td>"+
-                            "<td>"      + Clases.tipoMascota[mascotaActual._tipo]   + "</td>"+
-                            "<td>"      + mascotaActual._cantPatas                  + "</td></tr>"       
-            tabla.append(varAppend); 
-       }
-    }
-
-
-
-
-
-
-
-
-        ///INFO LEAN///
-
-       // function verificarCheck() {
-            
-         //     var row_name = $("#checkFORM : checkbox").val();
-            
-         //     alert(row_name);
-            
-         //     if (row_name != "") {
-         //         var row = $('<tr><td>' + row_name + '</td></tr>');
-         //         $('input[type="checkbox"]').each(function() 
-         //         {
-         //             if ($(this).is(':checked')) 
-         //             {
-         //                row.append('<td><input class="txtfld" type="text" placeholder="edit"></td>')
-         //             } 
-         //             else 
-         //             {
-         //                  row.append('<td></td>')
-         //             }
-         //         })
-         //         row.append('<td></td>')
-         //         $("table.printer-row tbody tr:last").before(row)
-         //     }
-             
-         // }
-               
-
-
-
-
-
-        // function boxChange(type)
-        // {
-        // var checkedValues = $('input:checkbox:checked.checkItems').map(function() { return this.value; }).get();
-        // var uncheckedValues = $('input:checkbox:not(:checked).checkItems').map(function() { return this.value; }).get();
-
-        //     if(type == "not"){
-        //         return uncheckedValues;
-        //     } else {
-        //         return checkedValues;
-        //     } 
-        // }
-
-        // $(":checkbox").change(function() {
-        // $("#checkItems").change(function() {
-        //     // boxChange();
-        //     alert("estoy aaca");
-        //     boxChange("not");
-        // });
-
-
-        // // Only Needed For Buttons
-        // $("body").on("click", "button#chk1", function() {
-        //     alert (boxChange());
-        // });
-        // $("body").on("click", "button#chk2", function() {
-        //     alert (boxChange("not"));
-        // });
-
-        //         limpiarCampos();
-        //             $txtnombred.val("")
-        //             a selectipo le da 0
-        //             y que ponga foco en txtid
-
-
-
-// } CORCHETE DE NAMESPACE 

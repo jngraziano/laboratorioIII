@@ -6,13 +6,10 @@ var Clases;
             this._edad = edad;
             this._cantPatas = cantPatas;
         }
-        Object.defineProperty(Animal.prototype, "Nombre", {
-            get: function () {
-                return this._nombre;
-            },
-            enumerable: true,
-            configurable: true
-        });
+        //  public get Nombre() : string 
+        //  {
+        //      return this._nombre;
+        //  }
         Animal.prototype.animalCompleto = function () {
             return this._nombre + ";" + this._edad + ";" + this._cantPatas;
         };

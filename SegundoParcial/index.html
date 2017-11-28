@@ -17,14 +17,17 @@
     <script src="TS/mascota.js"></script>
     <script src="TS/enumerado.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-     <!-- LINEA DE JQUERY -->
+    
+    <!-- LINEA DE JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
+    
+    
     <!-- CSS -->
     <link rel="stylesheet" href="css/estilos.css"> 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <title>Laboratorio III - Segundo Parcial</title>
-  </head>
+  
         
         <!-- HEADER NAV -->
         <div class="container">
@@ -45,148 +48,150 @@
               </div>
             </div>
           </nav>
+        </head>
         
-<body style="padding-top:65px">
-  
-        <div class="row">
-            <div class="form-group">
-                    <!-- ID -->
-                    <label for="id">ID</label>
-                    <input type="text" id="id" class="sinError form-control" name="id" placeholder="Ingrese su ID" autocomplete="off">
-                    <br>
-              </div>
-              <!-- NOMBRE -->
-              <div class="form-group">
-                
-                <label for="nombre">Nombre</label>
-                <br>
-                <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Ingrese su Nombre" autocomplete="off" autofocus>
-                <br>
-              </div> 
-
-              <!-- EDAD -->
-              <div class="form-group">
-                    <label for="edad">Edad</label>
-                    <br>
-                    <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Ingrese su Edad" autocomplete="off" autofocus>
-                    <br>
-                  </div>  
-            
-                <!-- TIPO -->
-                <div class="form-group">
-                        <label for="opcion">Elige un Tipo:</label>
-                        <select class="form-control" name="tipo" id="tipo">
-                        </select>
-                    </div>  
-
-                <!-- CANTIDAD DEPATAS  -->
-                <div class="form-group">
-                        <label for="opcion">Cantidad de patas</label>
-                        <select class="form-control" name="cantidadpatas" id="cantidadpatas">
-                            <option value="0">No tiene</option>
-                            <option value="2">2</option>
-                            <option value="4">4</option>
+        
+        <br><br><br>
+        <body>
+          <div class="container">
+            <!-- FORMULARIOS ENTRADA -->
+                     <!-- ID -> COMPLETAR
+                     NOMBRE -> COMPLETAR
+                     EDAD -> COMPLETAR
+                     TIPO ->ENUM TIPO
+                     CANTIDAD PATAS -> COMPLETAR -->
+                     <form id="formCARGA">        
+                        <div class"row">   
+                                <!-- <!—  ID--> 
+                                  <div class="form-group">
+                                  <label for="id">ID</label><br>
+                                  <input type="text" id="id" class="sinError form-control" name="id" placeholder="Ingrese ID" autocomplete="off" autofocus><br>
+                                  </div>
+                                <!-- <!— NOMBRE —> -->
+                                    <div class="form-group">
+                                    <label for="nombre">Nombre</label><br>
+                                    <input type="text" id="nombre" class="sinError form-control" name="nombre" placeholder="Ingrese Nombre" autocomplete="off" autofocus><br>
+                                    </div>
+                                <!-- <!— EDAD —> -->
+                                    <div class="form-group">
+                                    <label for="edad">Edad</label><br>
+                                    <input type="text" id="edad" class="sinError form-control" name="edad" placeholder="Ingrese Edad" autocomplete="off"><br>
+                                    </div>
+                                <!-- <!— TIPO - ENUM TIPO —> -->
+                                    <div class="form-group">
+                                        <label for="opcion">Elige un tipo:</label>
+                                        <select class="form-control" name="tipoMasc" id="tipoMasc">
+                                        </select>
+                                    </div>
+                                <!-- <!— PATAS —> -->
+                                    <div class="form-group">
+                                        <label for="opcion">Elige cant. patas:</label>
+                                        <select class="form-control" name="" id="patas"> —>
+                                            
+                                            <option value="0">Ninguna</option>
+                                            <option value="2">2</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </div>
+                                  </div>
                           
-                        </select>
-                    </div>  
-                                  
-        </div>
-      <div class="container rown">
-        <!-- BOTON AGREGAR -->
-        <div class="col-md-offset-3">
-          <button class='btn btn-success btn-lg' type="button" id="btnagregarMascota" value="Agregar" onclick="agregarMascota();">
-              Agregar
-              <i class="glyphicon glyphicon-plus"></i>
-          </button>
-        
-        <!-- BOTON MODIFICAR -->
-              <button class='btn btn-warning btn-lg' type="button" id="btnModificar" value="Modificar" onclick="modificar();">
-              Modificar
-                  <i class="glyphicon glyphicon-pencil"></i>
-              </button>
-          
-        <!-- BOTON ELIMINAR -->
-            <button class='btn btn-primary btn-lg' type="button" id="btnEliminar" value="Eliminar" onclick="eliminar();">
-              Eliminar
-                <i class="glyphicon glyphicon-remove"></i>
-            </button>
-
-        <!-- BOTON LIMPIAR LISTA -->
-            <button class='btn btn-danger btn-lg disabled' type="button" id="btnLimpiarLista" value="LimpiarLista" onclick="LimpiarLista();">
-              Limpiar Lista
-                <i class="glyphicon glyphicon-floppy-remove"></i>
-            </button>
-        </div>
-      </div>
-
-    </section>
-    
-<!-- SPINNER QUE GIRA CUANDO CARGA -->
-
-    <div id="spinner">
-    </div>
-    <br>
-<!-- PROMEDIO -->
-<div class="container rown">
-  
-    <h2>Sacar promedio</h2>
-    <button class='btn btn-lg' type="button" id="btnPromedio" value="Promedio" onclick="sacarpromedio();">
-        Promedio
-          <i class="glyphicon glyphicon-exclamation-sign"></i>
-    </button>
- 
-  </div>
-<br>
-<!-- <!— CHECKBOX —> -->
-<form id="checkFORM">
-    <div class="checkbox" id="checkboxx">
-      <caption><h2>Columnas listadas por:</h2></caption>
-      <label>
-          <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
-      </label>
-
-      <label>
-          <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
-      </label>
-
-      <label>
-        <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
-      </label>
-
-      <label>
-          <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
-      </label>
-      <label>
-        <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
-    </label>
-    </div>
-    <div class="form-group">
-        <label for="Filtro">FILTRAR POR:</label>
-        <select class="form-control" name="filtrarPor" id="filtrarPor">
-        </select>
-    </div>
-</form>
-
-<!-- TABLA LISTADO -->
-</div>
-<section id="listado" class="container"> 
-    <div class="container">
-  <!-- style="padding-top: 45px;" -->
-  <h2>Listado de Mascotas</h2>
-  <!-- <div class="table-responsive" class="container"> -->
-    <table class="" id="tabla">
-        <!-- CABECERA -->
-        <thead id="tCabecera">
-        </thead>
-        <!-- CUERPO -->
-        <tbody id="tCuerpo" style='visibility:hidden'>
-        </tbody>
-    
-    </table>
-
-  </div>
-</div>
-</section>
-</div>
-</body>
-</html>
+                          </div>
+                        </form>
+               <!-- BOTONES -->
+               <div class="container row">
+                   <div class="col-md-offset-3">
+                 <!-- AGREGAR -->    
+                         <button class='btn btn-success btn-lg' type="button" id="btnEnviar" value="Guardar" onclick="agregarMascota();">
+                             AGREGAR
+                             <i class="glyphicon glyphicon-plus"></i>
+                         </button>
+                     <!-- </div> -->
+                 <!-- ESTOS DEBERIAN SER BOTONES DE LA LISTA -->
+                 <!-- MODIFICAR -->
+                         <button class='btn btn-lg btn-warning' type="button" id="btnEnviar" value="Modificar" onclick="eliminarMascota();">
+                             MODIFICAR
+                             <i class="glyphicon glyphicon-pencil"></i>
+                         </button>
+                       <!-- </div> -->
+                 <!-- BORRAR -->
+                         <button class='btn btn-danger btn-lg' type="button" id="btnEnviar" value="Eliminar" onclick="modifiarMascota();">
+                             BORRAR
+                             <i class="glyphicon glyphicon-minus"></i>
+                         </button>
+                 <!-- LIMPIAR LISTA -->
+                       <!--EJEMPLO DE UN BOTON CON FUNCION Y EVENTO  -->
+                       <button class='btn btn-ok btn-sm disabled' type="button" id="borrarLista" onclick="limpiarLista();">
+                           LIMPIAR LISTA
+                           <i class="glyphicon glyphicon-minus"></i>
+                       </button>
+                   </div>
+             </div>
+         
+               </div>
+         
+             </section>
+         
+           
+               <!-- CHECKBOX  -->
+               <!-- <!— CHECKBOX —> -->
+               <form id="checkFORM">
+               <div class="col-md-offset-4">
+                 <div class="checkbox">
+                     
+                     <caption><h3>COLUMNAS VISIBLES:</h3></caption>
+                     <label>
+                         <input type="checkbox" class="checkItems" name="idfiltro" id="idfiltro" value="ID">ID
+                     </label>
+         
+                     <label>
+                         <input type="checkbox" class="checkItems" name="nombrefiltro" id="nombrefiltro" value="NOMBRE">NOMBRE
+                     </label>
+         
+                     <label>
+                       <input type="checkbox" class="checkItems" name="edadfiltro" id="edadfiltro" value="EDAD">EDAD
+                     </label>
+         
+                     <label>
+                         <input type="checkbox" class="checkItems" name="tipofiltro" id="tipofiltro" value="TIPO">TIPO
+                     </label>
+                     <label>
+                       <input type="checkbox" class="checkItems" name="cantPatasfiltro" id="cantPatasfiltro" value="CANTPATAS">CANT. PATAS
+                   </label>
+                 </div>
+                <br><br><br>
+                 <div class="container">
+                    <label for="Filtro">FILTRAR POR:</label>
+                    <select class="col-md-offset-3" name="filtrarPor" id="filtrarPor">
+                    </select>
+                </div>
+              </div>
+               </form>
+             <!-- TABLA LISTADO -->
+             </div>
+             <br><br>
+             <section id="listado" class="container" > 
+                 <div class="container">
+               <!-- style="padding-top: 45px;" -->
+               
+               <h2>Listado de Mascotas</h2>
+               <!-- <div class="table-responsive" class="container"> -->
+                 <table class="" id="tabla">
+                     <!-- CABECERA -->
+                     <thead id="tCabecera">
+                     </thead>
+                     <!-- CUERPO -->
+                     <tbody id="tCuerpo">
+                     </tbody>
+                     <tbody id="tCuerpoAUX" style='visibility:hidden'>
+                     </tbody>
+                     <tbody id="tCuerpoTXT" style='visibility:hidden'>
+                     </tbody>    
+                 </table>
+                 
+         
+               </div>
+             </div>
+             </section>
+         </div>
+         </body>
+         </html>
