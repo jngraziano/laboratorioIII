@@ -65,7 +65,7 @@ function limpiarLista():void
 function cargoMenusEncabezado()
 {
     //ENCABEZADO DE FORM DE CARGA
-    var i = 0;
+    //var i = 0;
     let select = $("#tipoMasc");
     for (var i = 0; i < 3; i++) 
     {
@@ -150,6 +150,7 @@ function tablaDinamica(checkboxON?)
     }
 }
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
+//CREO EL CUERPO DE LA TABLA
 function mostrarEmpleados(valor?):void
 {
     let EmpleadosString:string|null =  JSON.parse(localStorage.getItem("Empleados") || "[]");    
@@ -179,7 +180,7 @@ function mostrarEmpleados(valor?):void
         
         if (empleadoActual != null)
         {
-            let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
+            //let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
             
                     let varAppend = "<tr><td id='mascID"+i+"'>"+ empleadoActual._id                         + "</td>"+
                                     "<td id='mascNOM"   +i+"'>"+ empleadoActual._nombre                     + "</td>"+
@@ -188,7 +189,7 @@ function mostrarEmpleados(valor?):void
                                     "<td id='mascSEXO" +i+"'>"+ empleadoActual._sexo                  + "</td>"+
                                     "<td id='mascIMAGEN" +i+"'>"+ empleadoActual.imagen                  + "</td>"+
                                     "<td>"+  
-                                        "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
+                                        "<button class='btn btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado("+i+")'>"
                                         +"MODIFICAR"+
                                         "<i class='glyphicon glyphicon-pencil'></i>"+
                                         "</button>"
@@ -206,18 +207,26 @@ function mostrarEmpleados(valor?):void
    }    
    
 }
+
+///////AGREGAR///////
 function agregarEmpleado():void
 {
+    //Guardo el tipo traido desde el html 
     let tipo: Clases.tipoEmpleado  = Number($('#tipoMasc').val()); 
-    let nuevoEmpleado    = new Clases.Empleado(  String ($('#nombre').val()),
+    //Creo el nuevo empleado con los datos del form.
+    let nuevoEmpleado    = new Clases.Empleado(  
+                                            String ($('#nombre').val()),
                                             Number ($('#edad').val()),
                                             String ($('#sexo').val()),
                                             tipo,
                                             imagenBASE64
                                             );
     
+    //Guardo en una variable lo que me trae el localStorage
     let EmpleadosString  = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    //Agrego el nuevo empleado al array.
     EmpleadosString.push( JSON.stringify(nuevoEmpleado));
+    //Guardo nuevamente el array en el localStorage
     localStorage.setItem("Empleados",JSON.stringify(EmpleadosString));
         
     console.log(EmpleadosString);
@@ -226,28 +235,35 @@ function agregarEmpleado():void
     $('#formCARGA').trigger("reset");   
     
 } 
- 
+
+///////ELIMINAR///////
 function eliminarEmpleado(indice, vienedeModif?):void
 {
     var indice = indice;
+    //parseo a JSON empleados
     var objJson: JSON = JSON.parse(localStorage.Empleados);
+    //borro con el indice que le pase
     delete objJson[indice];
-    var objJsonResp = objJson.filter(function(x) { return x !== null }); //borro los nulos
+    //filtro para borrar los nulos
+    var objJsonResp = objJson.filter(function(x) { return x !== null }); 
+    //guardo en el localStorage
     localStorage.setItem("Empleados",JSON.stringify(objJsonResp));
+    //si viene de modificar 
     if( !(vienedeModif)) {alert("Empleado Eliminado");  mostrarEmpleados();} 
 } 
 
+///////MODIFICAR///////
 var vienedeModif;
 function modificarEmpleado(indice):void
 {
     var indice = indice;
     var objJson: JSON = JSON.parse(localStorage.Empleados);
-    
-    
+
     var persona = JSON.parse(objJson[indice]);
     eliminarEmpleado(indice,1);   
     var tcuerpo = $("#formCARGA");
 
+    //Creo devuelta el form mostrarndo las variables ya guardadas para modificar
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML = 
         " <div class'row'>"+
@@ -295,7 +311,7 @@ function calcularPromedio()
                         .reduce(function(actual,siguiente){
                             return actual+JSON.parse(siguiente)._edad;
                         },0);
-
+    //uso reduce para aplicar el valor a cada uno del array
         var cantidad = EmpleadosString
                         .reduce (function(actual,siguiente){
                             return actual + 1;
@@ -312,7 +328,7 @@ function calcularMaximo():number
 
     return valormax;
 }
-
+//Devuelvo el 
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
       return ( p < JSON.parse(v)._id ? JSON.parse(v)._id: p );

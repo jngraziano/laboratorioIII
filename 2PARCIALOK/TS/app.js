@@ -48,7 +48,7 @@ function limpiarLista() {
 //CARGO LOS DROPDOWN QUE DEPENDEN DEL ENUMERADO
 function cargoMenusEncabezado() {
     //ENCABEZADO DE FORM DE CARGA
-    var i = 0;
+    //var i = 0;
     var select = $("#tipoMasc");
     for (var i = 0; i < 3; i++) {
         select.append("<option value=" + i + ">" + Clases.tipoEmpleado[i] + "</option>");
@@ -120,6 +120,7 @@ function tablaDinamica(checkboxON) {
     }
 }
 /////////////////////////////////////////FUNCIONES DE CLASES/////////////////////////////////////////
+//CREO EL CUERPO DE LA TABLA
 function mostrarEmpleados(valor) {
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
     //ARMO EL ARRAY DE EmpleadoS, SEGUN SI ES TABLA FULL O FILTRADA
@@ -147,7 +148,7 @@ function mostrarEmpleados(valor) {
             empleadoActual = JSON.parse(EmpleadosString[i]);
         }
         if (empleadoActual != null) {
-            var miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
+            //let miTipo = Clases.tipoEmpleado[empleadoActual._tipo];
             var varAppend = "<tr><td id='mascID" + i + "'>" + empleadoActual._id + "</td>" +
                 "<td id='mascNOM" + i + "'>" + empleadoActual._nombre + "</td>" +
                 "<td id='mascEDAD" + i + "'>" + empleadoActual._edad + "</td>" +
@@ -155,7 +156,7 @@ function mostrarEmpleados(valor) {
                 "<td id='mascSEXO" + i + "'>" + empleadoActual._sexo + "</td>" +
                 "<td id='mascIMAGEN" + i + "'>" + empleadoActual.imagen + "</td>" +
                 "<td>" +
-                "<button class='btn btn- btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado(" + i + ")'>"
+                "<button class='btn btn-warning' type='button' id='btnEnviar' value='Modificar' onclick='modificarEmpleado(" + i + ")'>"
                 + "MODIFICAR" +
                 "<i class='glyphicon glyphicon-pencil'></i>" +
                 "</button>"
@@ -171,28 +172,41 @@ function mostrarEmpleados(valor) {
         }
     }
 }
+///////AGREGAR///////
 function agregarEmpleado() {
+    //Guardo el tipo traido desde el html 
     var tipo = Number($('#tipoMasc').val());
+    //Creo el nuevo empleado con los datos del form.
     var nuevoEmpleado = new Clases.Empleado(String($('#nombre').val()), Number($('#edad').val()), String($('#sexo').val()), tipo, imagenBASE64);
+    //Guardo en una variable lo que me trae el localStorage
     var EmpleadosString = JSON.parse(localStorage.getItem("Empleados") || "[]");
+    //Agrego el nuevo empleado al array.
     EmpleadosString.push(JSON.stringify(nuevoEmpleado));
+    //Guardo nuevamente el array en el localStorage
     localStorage.setItem("Empleados", JSON.stringify(EmpleadosString));
     console.log(EmpleadosString);
     alert("Empleado guardado");
     mostrarEmpleados();
     $('#formCARGA').trigger("reset");
 }
+///////ELIMINAR///////
 function eliminarEmpleado(indice, vienedeModif) {
     var indice = indice;
+    //parseo a JSON empleados
     var objJson = JSON.parse(localStorage.Empleados);
+    //borro con el indice que le pase
     delete objJson[indice];
-    var objJsonResp = objJson.filter(function (x) { return x !== null; }); //borro los nulos
+    //filtro para borrar los nulos
+    var objJsonResp = objJson.filter(function (x) { return x !== null; });
+    //guardo en el localStorage
     localStorage.setItem("Empleados", JSON.stringify(objJsonResp));
+    //si viene de modificar 
     if (!(vienedeModif)) {
         alert("Empleado Eliminado");
         mostrarEmpleados();
     }
 }
+///////MODIFICAR///////
 var vienedeModif;
 function modificarEmpleado(indice) {
     var indice = indice;
@@ -200,6 +214,7 @@ function modificarEmpleado(indice) {
     var persona = JSON.parse(objJson[indice]);
     eliminarEmpleado(indice, 1);
     var tcuerpo = $("#formCARGA");
+    //Creo devuelta el form mostrarndo las variables ya guardadas para modificar
     tcuerpo[0].innerHTML = "";
     tcuerpo[0].innerHTML =
         " <div class'row'>" +
@@ -239,6 +254,7 @@ function calcularPromedio() {
         .reduce(function (actual, siguiente) {
         return actual + JSON.parse(siguiente)._edad;
     }, 0);
+    //uso reduce para aplicar el valor a cada uno del array
     var cantidad = EmpleadosString
         .reduce(function (actual, siguiente) {
         return actual + 1;
@@ -251,6 +267,7 @@ function calcularMaximo() {
     var valormax = arrayMax(EmpleadosString);
     return valormax;
 }
+//Devuelvo el 
 function arrayMax(arr) {
     return arr.reduce(function (p, v) {
         return (p < JSON.parse(v)._id ? JSON.parse(v)._id : p);

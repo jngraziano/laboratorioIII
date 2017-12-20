@@ -1,5 +1,6 @@
 INTRODUCCION A TYPESCRIPT -> se TRANSPILA a JAVASCRIPT (js) CTRL+Ñ
     PARA INSTALARLO CON NODE
+		recordar tener instalado el nodejs
         npm install -g typescript
         iniciar proyecto
             tsc -init
